@@ -1,39 +1,26 @@
 import "./App.css";
-import logo from "./logo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFeather } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="mockBee logo" width="180" height="180" />
-        <h1 className="brand-title">
-          Welcome to <span>mockBee!</span>
-        </h1>
-        <p className="brand-description">
-          Get started by editing <code>src/App.js</code>
-        </p>
-        <div className="links">
-          <a
-            href="https://mockbee.netlify.app/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Explore mockBee
-          </a>
-          <a
-            href="https://mockbee.netlify.app/docs/api/introduction"
-            target="_blank"
-            rel="noreferrer"
-          >
-            API Documentation
-          </a>
-          <a
-            href="https://github.com/neogcamp/mockBee"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Contribute
-          </a>
+    <div className='App'>
+      <header className='landing'>
+        <div className='landing-poster'>
+          <img
+            className='landing-poster--image'
+            src={
+              "https://abs.twimg.com/sticky/illustrations/lohp_en_1302x955.png"
+            }
+            alt='abstract-art-blue'></img>
+          <FontAwesomeIcon className='landing-poster--icon' icon={faFeather} />
+        </div>
+        <div className='landing-content'>
+          <FontAwesomeIcon icon={faFeather} />
+          <div className='h3 landing-title'>Happening now</div>
+          <div className='h4 landing-subtitle'>Join Tweeter today.</div>
+          <div className='btn'>Log in</div>
+          <div className='btn'>Sign up</div>
         </div>
       </header>
     </div>
