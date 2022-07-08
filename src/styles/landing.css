@@ -15,13 +15,19 @@
 
 .landing-highlight {
     color: var(--primary-darker);
+    font-weight: var(--bold);
 }
 
 .landing-content--icon {
     font-size: xx-large;
+    color: black;
 }
 
 .landing-title {
+    color: var(--primary-dark);
+}
+
+.landing-subtitle{
     color: var(--primary-dark);
 }
 
