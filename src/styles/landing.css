@@ -20,7 +20,7 @@
 
 .landing-content--icon {
     font-size: xx-large;
-    color: black;
+    color: var(--black);
 }
 
 .landing-title {
