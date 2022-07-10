@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateField } from "../store/auth/authSlice";
 import "../styles/login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCrow } from "@fortawesome/free-solid-svg-icons";
 
 const LoginPage = () => {
-  const { auth } = useSelector((store) => store.auth);
-  console.log(auth);
+  const { auth } = useSelector((store) => store);
+  const dispatch = useDispatch();
+
+  const onChangeHandler = (e) => {
+    dispatch(updateField({ field: e.target.name, value: e.target.value }));
+  };
+  const onSubmitHandler = (e) => {};
+
   return (
     <>
       <form>
@@ -14,14 +21,15 @@ const LoginPage = () => {
           <FontAwesomeIcon icon={faCrow} /> Sign In
         </h5>
         <div className='input'>
-          <label htmlFor='email' className='input-label'>
-            Email address
+          <label htmlFor='userName' className='input-label'>
+            User Name
           </label>
           <input
-            name='email'
-            type='email'
+            name='userName'
+            type='text'
             className='input-data'
-            placeholder='example@gmail.com'
+            value={auth.userName}
+            onChange={onChangeHandler}
             required></input>
         </div>
         <div className='input'>
@@ -33,7 +41,8 @@ const LoginPage = () => {
             type='password'
             id='password'
             className='input-data'
-            placeholder='********'
+            value={auth.password}
+            onChange={onChangeHandler}
             required></input>
         </div>
         <div className='options'>
@@ -42,6 +51,8 @@ const LoginPage = () => {
               name='remember_me'
               type='checkbox'
               className='input-data'
+              defaultChecked={auth.remember_me}
+              onChange={onChangeHandler}
               id='remember'></input>
             <label htmlFor='remember_me'>Remember me</label>
           </div>

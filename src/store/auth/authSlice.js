@@ -1,14 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
-  userName: "bancobanco@gmail.com",
-  password: "bancobanco",
+  userName: "bancobanco",
+  password: "Banco123",
+  remember_me: true,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    updateField: (state, action) => {
+      state[action.payload.field] = action.payload.value;
+    },
+  },
 });
+
+export const { updateField } = authSlice.actions;
 
 export default authSlice.reducer;
