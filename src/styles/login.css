@@ -28,3 +28,7 @@ form{
 .remember-check{
     display: block;
 }
+
+.remember-check:focus-within label{
+    color: var(--primary-darker);
+}

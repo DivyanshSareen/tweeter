@@ -39,3 +39,8 @@
     font-weight: var(--bold);
     text-align: center;
 }
+
+.btn-ghost:hover{
+    color: var(--white);
+    background-color: var(--primary-dark);
+}
