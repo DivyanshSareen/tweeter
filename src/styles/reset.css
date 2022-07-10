@@ -1,0 +1,15 @@
+:root{
+    --primary-lighter: #E3FDFD;
+    --primary-light: #CBF1F5;
+    --primary: #A6E3E9;
+    --primary-dark: #71C9CE;
+    --primary-darker: #56b2b7;
+    --primary-even-darker: #2b585b;
+    --black: #000;
+    --white: #fff;
+}
+
+    body{
+    background: white;
+    color: var(--primary-darker);
+}

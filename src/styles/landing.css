@@ -1,0 +1,46 @@
+.landing {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5em;
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+}
+
+.landing-poster {
+    width: 30%;
+}
+
+.landing-highlight {
+    color: var(--primary-darker);
+    font-weight: var(--bold);
+}
+
+.landing-content--icon {
+    font-size: xx-large;
+    color: var(--black);
+}
+
+.landing-title {
+    color: var(--primary-dark);
+}
+
+.landing-subtitle{
+    color: var(--primary-dark);
+}
+
+.btn-ghost {
+    color: var(--primary-darker);
+    filter: none;
+    border: 2px solid var(--primary);
+    background: var(--primary-lighter);
+    font-weight: var(--bold);
+    text-align: center;
+}
+
+.btn-ghost:hover{
+    color: var(--white);
+    background-color: var(--primary-dark);
+}
