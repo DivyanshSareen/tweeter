@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "../styles/login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCrow } from "@fortawesome/free-solid-svg-icons";
 
 const LoginPage = () => {
+  const { auth } = useSelector((store) => store.auth);
+  console.log(auth);
   return (
     <>
       <form>
