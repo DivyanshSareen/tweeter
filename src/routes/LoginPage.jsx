@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { updateField } from "../store/auth/authSlice";
+import { updateField, loginUser } from "../store/auth/authSlice";
 import "../styles/login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCrow } from "@fortawesome/free-solid-svg-icons";
@@ -12,11 +12,14 @@ const LoginPage = () => {
   const onChangeHandler = (e) => {
     dispatch(updateField({ field: e.target.name, value: e.target.value }));
   };
-  const onSubmitHandler = (e) => {};
 
   return (
     <>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          dispatch(loginUser());
+        }}>
         <h5 className='h4 center-text login-head'>
           <FontAwesomeIcon icon={faCrow} /> Sign In
         </h5>
