@@ -9,22 +9,19 @@ const initialState = {
   remember_me: true,
   authToken: token !== null ? token : "",
   isLoggedIn: token !== null ? true : false,
+  status: "idle",
 };
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (args, { getState }) => {
     const state = getState();
-    try {
-      return axios
-        .post("api/auth/login", {
-          username: state.auth.userName,
-          password: state.auth.password,
-        })
-        .then((res) => res.data.encodedToken);
-    } catch (e) {
-      return console.log(e);
-    }
+    return axios
+      .post("api/auth/login", {
+        username: state.auth.userName,
+        password: state.auth.password,
+      })
+      .then((res) => res.data.encodedToken);
   }
 );
 
@@ -32,16 +29,12 @@ export const signupUser = createAsyncThunk(
   "/auth/signupUser",
   async (args, { getState }) => {
     const state = getState();
-    try {
-      return axios
-        .post("/api/auth/signup", {
-          username: state.auth.userName,
-          password: state.auth.password,
-        })
-        .then((res) => res.data.encodedToken);
-    } catch (e) {
-      console.log(e);
-    }
+    return axios
+      .post("/api/auth/signup", {
+        username: state.auth.userName,
+        password: state.auth.password,
+      })
+      .then((res) => res.data.encodedToken);
   }
 );
 
@@ -65,6 +58,13 @@ const authSlice = createSlice({
         window.localStorage.setItem("authToken", action.payload.encodedToken);
       }
       state.isLoggedIn = true;
+      state.status = "fulfilled";
+    },
+    [loginUser.pending]: (state) => {
+      state.status = "pending";
+    },
+    [loginUser.rejected]: (state) => {
+      state.status = "rejected";
     },
   },
 });

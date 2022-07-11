@@ -1,5 +1,7 @@
+import logo from "../../assets/loading.svg";
+
 const Loading = () => {
-  return <>Loading</>;
+  return <img src={logo} alt=''></img>;
 };
 
 export default Loading;
