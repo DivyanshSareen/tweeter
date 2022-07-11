@@ -1,12 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const token = window.localStorage.getItem("authToken");
+console.log(token);
 const initialState = {
   userName: "bancobanco",
   password: "Banco123",
   remember_me: true,
-  authToken: "",
-  isLoggedIn: false,
+  authToken: token !== null ? token : "",
+  isLoggedIn: token !== null ? true : false,
 };
 
 export const loginUser = createAsyncThunk(
@@ -16,7 +18,7 @@ export const loginUser = createAsyncThunk(
     try {
       return axios
         .post("api/auth/login", {
-          userName: state.auth.userName,
+          username: state.auth.userName,
           password: state.auth.password,
         })
         .then((res) => res.data.encodedToken);
@@ -33,7 +35,7 @@ export const signupUser = createAsyncThunk(
     try {
       return axios
         .post("/api/auth/signup", {
-          userName: state.auth.userName,
+          username: state.auth.userName,
           password: state.auth.password,
         })
         .then((res) => res.data.encodedToken);
@@ -50,19 +52,23 @@ const authSlice = createSlice({
     updateField: (state, action) => {
       state[action.payload.field] = action.payload.value;
     },
+    logoutUser: (state, action) => {
+      window.localStorage.clear("authToken");
+      state.authToken = "";
+      state.isLoggedIn = false;
+    },
   },
   extraReducers: {
     [loginUser.fulfilled]: (state, action) => {
       state.authToken = action.payload;
-      state.isLoggedIn = true;
-    },
-    [signupUser.fulfilled]: (state, action) => {
-      state.authToken = action.payload;
+      if (state.remember_me === true) {
+        window.localStorage.setItem("authToken", action.payload.encodedToken);
+      }
       state.isLoggedIn = true;
     },
   },
 });
 
-export const { updateField } = authSlice.actions;
+export const { updateField, logoutUser } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -1,0 +1,13 @@
+.error-screen{
+    display: flex;
+    align-items: center;
+}
+
+.error-image{
+    height: 100vh;
+filter: invert(69%) sepia(23%) saturate(835%) hue-rotate(134deg) brightness(90%) contrast(82%);
+}
+
+.error-message{
+    padding-right: 10vw;
+}
