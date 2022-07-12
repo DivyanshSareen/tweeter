@@ -1,0 +1,7 @@
+@import "./create-post.css";
+@import "./timeline.css";
+
+.homepage{
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+}

@@ -4,7 +4,7 @@ import LandingPage from "./routes/LandingPage";
 import LoginPage from "./routes/LoginPage";
 import SignupPage from "./routes/SignupPage";
 import HomePage from "./routes/HomePage";
-import RequiresAuth from "./components/auth/RequiresAuth";
+import RequiresAuth from "./components/RequiresAuth/RequiresAuth";
 import ErrorPage from "./routes/ErrorPage";
 import Mockman from "mockman-js";
 

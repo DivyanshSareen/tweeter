@@ -1,1 +1,66 @@
 @import "./reset.css";
+
+.homepage{
+    position: relative;
+}
+
+/* sidebar styling */
+.sidebar-menu {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 2.5em;
+    align-items: baseline;
+    padding: 1em 0 0 30%;
+}
+
+.sidebar-logo {
+    font-size: 1.7em;
+}
+
+.sidebar-logo>.sidebar-logo--icon {
+    padding-right: 0.2em;
+}
+
+.sidebar-option>.sidebar-logo--icon {
+    padding-right: 0.6em;
+}
+
+.sidebar-option {
+    font-size: 1.3rem;
+}
+
+.sidebar-profile {
+    margin-top: auto;
+    margin-bottom: 1.35em;
+    display: flex;
+    gap: 0.7em;
+}
+
+.sidebar-profile>.avatar>img {
+    height: 2.7em;
+}
+
+.sidebar-actual--name {
+    font-weight: var(--bold);
+}
+
+/* recommendation styling */
+.recommend{
+    padding: 2em;
+}
+
+.recommendations{
+    padding-top: 1em;
+}
+
+.rec-user{
+    padding-bottom: 1em;
+    display: flex;
+    gap: 0.7em;
+}
+
+.rec-user > .avatar {
+    width: 2.7em;
+}
