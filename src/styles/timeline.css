@@ -1,0 +1,24 @@
+.timeline{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 0.7em;
+}
+
+.post{
+    height: 8em;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+.post > .avatar{
+    grid-area: "avatar";
+}
+
+.post-content{
+    grid-area: "content";
+}
+
+.post-options{
+    grid-area: "options";
+}

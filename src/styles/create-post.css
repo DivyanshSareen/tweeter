@@ -1,0 +1,28 @@
+.create-post {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    border-bottom: 1px solid var(--primary-darker);
+}
+
+.create-post>.avatar {
+    align-self: center;
+    justify-self: center;
+}
+
+.text-area {
+    width: 95%;
+}
+
+.textarea-data {
+    border: 2px solid var(--primary-darker);
+    resize: none;
+    width: 100%;
+}
+
+.text-area:focus-within label {
+    color: var(--primary-darker);
+}
+
+.text-area>.btn {
+    margin-left: auto;
+}

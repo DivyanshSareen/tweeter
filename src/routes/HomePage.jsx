@@ -1,14 +1,9 @@
 import { useSelector, useDispatch } from "react-redux/es/exports";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCrow,
-  faRocket,
-  faBookmark,
-  faBell,
-  faUser,
-  faHome,
-} from "@fortawesome/free-solid-svg-icons";
 import { logoutUser } from "../store/auth/authSlice";
+import Sidebar from "../components/Sidebar/Sidebar";
+import CreatePost from "../components/Posts/CreatePost";
+import Post from "../components/Posts/Post";
+import Recommendations from "../components/Users/Recommendations";
 
 import "../styles/home.css";
 
@@ -18,69 +13,18 @@ const HomePage = () => {
   return (
     <>
       <div className='homepage'>
-        <div className='sidebar-menu'>
-          <div className='sidebar-logo'>
-            <FontAwesomeIcon className='sidebar-logo--icon' icon={faCrow} />
-            Tweeter
-          </div>
-          <div className='sidebar-option'>
-            <FontAwesomeIcon className='sidebar-logo--icon' icon={faHome} />
-            Home
-          </div>
-          <div className='sidebar-option'>
-            <FontAwesomeIcon className='sidebar-logo--icon' icon={faRocket} />
-            Explore
-          </div>
-          <div className='sidebar-option'>
-            <FontAwesomeIcon className='sidebar-logo--icon' icon={faBookmark} />
-            Bookmarks
-          </div>
-          <div className='sidebar-option'>
-            <FontAwesomeIcon className='sidebar-logo--icon' icon={faBell} />
-            Notifications
-          </div>
-          <div className='sidebar-option'>
-            <FontAwesomeIcon className='sidebar-logo--icon' icon={faUser} />
-            Profile
-          </div>
-          <div className='sidebar-profile'>
-            <div className='avatar'>
-              <img
-                src={require("../assets/landing1.jpg")}
-                alt='avatar-img'></img>
-            </div>
-            <div className='sidebar-profile-info'>
-              <p className='sidebar-actual--name'>
-                {auth.firstName + " " + auth.lastName}
-              </p>
-              <p className='sidebar-user--name'>@{auth.userName}</p>
-            </div>
-          </div>
-        </div>
+        <Sidebar auth={auth} />
         <div className='posts'>
-          <section className='create-post'>
-            <div className='avatar'>
-              <img
-                src={require("../assets/landing1.jpg")}
-                alt='avatar-img'></img>
-            </div>
-            <form>
-              <div className='text-area'>
-                <label className='textarea-label' for='desc'>
-                  What's on your mind?
-                </label>
-                <textarea
-                  className='textarea-data'
-                  cols='40'
-                  rows='8'
-                  id='desc'
-                  placeholder='Start typing!'></textarea>
-                <input type='submit' className='btn' value='post'></input>
-              </div>
-            </form>
+          <CreatePost />
+          <section className='timeline'>
+            <Post />
+            <Post />
+            <Post />
           </section>
         </div>
-        <div className='users'>yoo</div>
+        <div className='users'>
+          <Recommendations />
+        </div>
       </div>
       {/* Hello from HomePage UserName: {auth.userName}
       <button
