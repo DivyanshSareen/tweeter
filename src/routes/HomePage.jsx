@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux/es/exports";
+import { useSelector } from "react-redux/es/exports";
 // import { logoutUser } from "../store/auth/authSlice";
 import Sidebar from "../components/Sidebar/Sidebar";
 import CreatePost from "../components/Posts/CreatePost";
