@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux/es/exports";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCrow,
@@ -8,7 +10,8 @@ import {
   faHome,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Sidebar = ({ auth }) => {
+const Sidebar = () => {
+  const auth = useSelector((store) => store.auth);
   return (
     <div className='sidebar-menu'>
       <div className='sidebar-logo'>
@@ -31,14 +34,16 @@ const Sidebar = ({ auth }) => {
         <FontAwesomeIcon className='sidebar-logo--icon' icon={faBell} />
         Notifications
       </div>
-      <div className='sidebar-option'>
-        <FontAwesomeIcon className='sidebar-logo--icon' icon={faUser} />
-        Profile
-      </div>
+      <Link to='/home/profile'>
+        <div className='sidebar-option'>
+          <FontAwesomeIcon className='sidebar-logo--icon' icon={faUser} />
+          Profile
+        </div>
+      </Link>
       <div className='sidebar-profile'>
         <div className='avatar'>
           <img
-            src={require("../../assets/landing1.jpg")}
+            src={require(`../../assets/${auth?.profilePicture}`)}
             alt='avatar-img'></img>
         </div>
         <div className='sidebar-profile-info'>

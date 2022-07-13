@@ -12,6 +12,10 @@ export const users = [
     lastName: "Banco",
     username: "Bancobanco",
     password: "Banco123",
+    profilePicture: "user_profiles/banco.png",
+    description:
+      "Learning Web Developement | 100 Days of Code | React and JavaScript | DSA | Blogging",
+    portfolioURL: "https://divyanshsareen.netlify.app/",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },

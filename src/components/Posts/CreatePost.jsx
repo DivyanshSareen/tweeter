@@ -6,7 +6,7 @@ const CreatePost = () => {
       </div>
       <form>
         <div className='text-area'>
-          <label className='textarea-label' for='desc'>
+          <label className='textarea-label' htmlFor='desc'>
             What's on your mind?
           </label>
           <textarea

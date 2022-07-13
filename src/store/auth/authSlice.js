@@ -2,10 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const token = window.localStorage.getItem("authToken");
-console.log(token);
 const initialState = {
-  userName: "bancobanco",
+  userName: "Bancobanco",
   password: "Banco123",
+  firstName: "Divyansh",
+  lastName: "Sareen",
+  profilePicture: "default_pp.png",
   remember_me: true,
   authToken: token !== null ? token : "",
   isLoggedIn: token !== null ? true : false,
@@ -21,7 +23,7 @@ export const loginUser = createAsyncThunk(
         username: state.auth.userName,
         password: state.auth.password,
       })
-      .then((res) => res.data.encodedToken);
+      .then((res) => res.data);
   }
 );
 
@@ -33,8 +35,11 @@ export const signupUser = createAsyncThunk(
       .post("/api/auth/signup", {
         username: state.auth.userName,
         password: state.auth.password,
+        firstName: state.auth.firstName,
+        lastName: state.auth.lastName,
+        profilePicture: "default_pp.png",
       })
-      .then((res) => res.data.encodedToken);
+      .then((res) => res.data);
   }
 );
 
@@ -53,7 +58,11 @@ const authSlice = createSlice({
   },
   extraReducers: {
     [loginUser.fulfilled]: (state, action) => {
-      state.authToken = action.payload;
+      state.firstName = action.payload.foundUser.firstName;
+      state.lastName = action.payload.foundUser.lastName;
+      state.userName = action.payload.foundUser.username;
+      state.profilePicture = action.payload.foundUser.profilePicture;
+      state.authToken = action.payload.encodedToken;
       if (state.remember_me === true) {
         window.localStorage.setItem("authToken", action.payload.encodedToken);
       }

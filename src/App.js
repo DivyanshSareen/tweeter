@@ -16,13 +16,14 @@ function App() {
         <Route path='login' element={<LoginPage />} />
         <Route path='signup' element={<SignupPage />} />
         <Route
-          path='home'
+          path='home/*'
           element={
             <RequiresAuth>
               <HomePage />
             </RequiresAuth>
           }
         />
+
         <Route path='error' element={<ErrorPage />} />
         <Route path='mock' element={<Mockman />} />
       </Routes>

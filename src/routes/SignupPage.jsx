@@ -26,6 +26,30 @@ const SignupPage = () => {
           <FontAwesomeIcon icon={faCrow} /> Register
         </h5>
         <div className='input'>
+          <label htmlFor='firstName' className='input-label'>
+            First Name
+          </label>
+          <input
+            name='firstName'
+            type='text'
+            className='input-data'
+            value={auth.firstName}
+            onChange={onChangeHandler}
+            required></input>
+        </div>
+        <div className='input'>
+          <label htmlFor='lastName' className='input-label'>
+            Last Name
+          </label>
+          <input
+            name='lastName'
+            type='text'
+            className='input-data'
+            value={auth.lastName}
+            onChange={onChangeHandler}
+            required></input>
+        </div>
+        <div className='input'>
           <label htmlFor='userName' className='input-label'>
             User Name
           </label>

@@ -1,5 +1,6 @@
 @import "./create-post.css";
 @import "./timeline.css";
+@import "./profile.css";
 
 .homepage{
     display: grid;
