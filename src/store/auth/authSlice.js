@@ -3,10 +3,10 @@ import axios from "axios";
 
 const token = window.localStorage.getItem("authToken");
 const initialState = {
-  userName: "Bancobanco",
-  password: "Banco123",
-  firstName: "Divyansh",
-  lastName: "Sareen",
+  userName: "",
+  password: "",
+  firstName: "",
+  lastName: "",
   profilePicture: "default_pp.png",
   remember_me: true,
   authToken: token !== null ? token : "",
@@ -62,7 +62,10 @@ const authSlice = createSlice({
       state.lastName = action.payload.foundUser.lastName;
       state.userName = action.payload.foundUser.username;
       state.profilePicture = action.payload.foundUser.profilePicture;
+      state.description = action.payload.foundUser.description;
+      state.portfolioURL = action.payload.foundUser.portfolioURL;
       state.authToken = action.payload.encodedToken;
+      console.log(action.payload);
       if (state.remember_me === true) {
         window.localStorage.setItem("authToken", action.payload.encodedToken);
       }

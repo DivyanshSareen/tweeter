@@ -25,16 +25,10 @@ const ProfilePage = () => {
         </button>
         <button className='btn btn-ghost'>Edit</button>
       </div>
-      <p className='paragraph1  center-text'>
-        Learning Web Developement | 100 Days of Code | React and JavaScript |
-        DSA | Blogging
-      </p>
+      <p className='paragraph1  center-text'>{auth.description}</p>
       <p className='paragraph2'>
-        <a
-          target='_blank'
-          href='https://divyanshsareen.netlify.app/'
-          rel='noreferrer'>
-          https://divyanshsareen.netlify.app/
+        <a target='_blank' href={auth.portfolioURL} rel='noreferrer'>
+          {auth.portfolioURL}
         </a>
       </p>
     </div>

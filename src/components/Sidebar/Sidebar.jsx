@@ -18,10 +18,10 @@ const Sidebar = () => {
         <FontAwesomeIcon className='sidebar-logo--icon' icon={faCrow} />
         Tweeter
       </div>
-      <div className='sidebar-option'>
+      <Link to='/home' className='sidebar-option'>
         <FontAwesomeIcon className='sidebar-logo--icon' icon={faHome} />
         Home
-      </div>
+      </Link>
       <div className='sidebar-option'>
         <FontAwesomeIcon className='sidebar-logo--icon' icon={faRocket} />
         Explore

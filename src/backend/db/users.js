@@ -64,7 +64,7 @@ export const users = [
     lastName: "Roronoa",
     username: "piratehunter",
     password: "Zoro123",
-    profilePicture: "https://onepiece.fandom.com/wiki/Roronoa_Zoro/History",
+    profilePicture: "user_profiles/zoro.jpg",
     description:
       "Best Swordsman | Three Sword Style | bounty: 320,000,000 belly | Vice Captain, Straw Hat Pirates",
     portfolioURL: "https://onepiece.fandom.com/wiki/Roronoa_Zoro",
