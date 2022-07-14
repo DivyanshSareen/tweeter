@@ -18,6 +18,25 @@ export const getListOfUsers = createAsyncThunk(
   }
 );
 
+export const followUser = createAsyncThunk(
+  "/users/followUser",
+  async (userId, { getState }) => {
+    const state = getState();
+    console.log(state.auth.authToken);
+    console.log(userId);
+    axios
+      .post(
+        `api/users/follow/${userId}`,
+        {},
+        {
+          headers: { authorization: state.userInfo.authToken },
+        }
+      )
+      .catch((e) => console.log(e))
+      .then((res) => console.log(res));
+  }
+);
+
 const usersSlice = createSlice({
   name: "users",
   initialState,

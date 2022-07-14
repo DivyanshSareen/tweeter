@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = () => {
-  const auth = useSelector((store) => store.auth);
+  const userInfo = useSelector((store) => store.userInfo);
   return (
     <div className='sidebar-menu'>
       <div className='sidebar-logo'>
@@ -43,14 +43,18 @@ const Sidebar = () => {
       <div className='sidebar-profile'>
         <div className='avatar'>
           <img
-            src={require(`../../assets/${auth?.profilePicture}`)}
+            src={require(`../../assets/${userInfo?.userDetails?.profilePicture}`)}
             alt='avatar-img'></img>
         </div>
         <div className='sidebar-profile-info'>
           <p className='sidebar-actual--name'>
-            {auth.firstName + " " + auth.lastName}
+            {userInfo?.userDetails?.firstName +
+              " " +
+              userInfo?.userDetails?.lastName}
           </p>
-          <p className='sidebar-user--name'>@{auth.userName}</p>
+          <p className='sidebar-user--name'>
+            @{userInfo?.userDetails?.username}
+          </p>
         </div>
       </div>
     </div>

@@ -2,19 +2,19 @@ import { useSelector, useDispatch } from "react-redux/es/exports";
 import { logoutUser } from "../store/auth/authSlice";
 
 const ProfilePage = () => {
-  const auth = useSelector((store) => store.auth);
+  const userInfo = useSelector((store) => store.userInfo);
   const dispatch = useDispatch();
   return (
     <div className='profile'>
       <div className='avatar avatar-l'>
         <img
-          src={require(`../assets/${auth.profilePicture}`)}
+          src={require(`../assets/${userInfo.userDetails.profilePicture}`)}
           alt='avatar-img'></img>
       </div>
       <h5 className='h5'>
-        {auth.firstName} {auth.lastName}
+        {userInfo.userDetails.firstName} {userInfo.userDetails.lastName}
       </h5>
-      <p className='sub-title1'>@{auth.userName}</p>
+      <p className='sub-title1'>@{userInfo.userDetails.username}</p>
       <div className='profile-options'>
         <button
           className='btn btn-ghost'
@@ -25,10 +25,15 @@ const ProfilePage = () => {
         </button>
         <button className='btn btn-ghost'>Edit</button>
       </div>
-      <p className='paragraph1  center-text'>{auth.description}</p>
+      <p className='paragraph1  center-text'>
+        {userInfo.userDetails.description}
+      </p>
       <p className='paragraph2'>
-        <a target='_blank' href={auth.portfolioURL} rel='noreferrer'>
-          {auth.portfolioURL}
+        <a
+          target='_blank'
+          href={userInfo.userDetails.portfolioURL}
+          rel='noreferrer'>
+          {userInfo.userDetails.portfolioURL}
         </a>
       </p>
     </div>

@@ -3,7 +3,6 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import CreatePost from "../components/Posts/CreatePost";
 import Post from "../components/Posts/Post";
 import Recommendations from "../components/Users/Recommendations";
-
 import "../styles/home.css";
 import ProfilePage from "./ProfilePage";
 

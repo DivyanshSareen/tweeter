@@ -59,12 +59,7 @@ const authSlice = createSlice({
   },
   extraReducers: {
     [loginUser.fulfilled]: (state, action) => {
-      state.firstName = action.payload.foundUser.firstName;
-      state.lastName = action.payload.foundUser.lastName;
-      state.userName = action.payload.foundUser.username;
-      state.profilePicture = action.payload.foundUser.profilePicture;
-      state.description = action.payload.foundUser.description;
-      state.portfolioURL = action.payload.foundUser.portfolioURL;
+      state.userData = action.payload;
       state.authToken = action.payload.encodedToken;
       if (state.remember_me === true) {
         window.localStorage.setItem("authToken", action.payload.encodedToken);
