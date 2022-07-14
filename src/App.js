@@ -7,14 +7,36 @@ import HomePage from "./routes/HomePage";
 import RequiresAuth from "./components/RequiresAuth/RequiresAuth";
 import ErrorPage from "./routes/ErrorPage";
 import Mockman from "mockman-js";
+import RedirectOnAuth from "./components/RedirectOnAuth";
 
 function App() {
   return (
     <div className='App'>
       <Routes>
-        <Route path='/' element={<LandingPage />} />
-        <Route path='login' element={<LoginPage />} />
-        <Route path='signup' element={<SignupPage />} />
+        <Route
+          path='/'
+          element={
+            <RedirectOnAuth>
+              <LandingPage />
+            </RedirectOnAuth>
+          }
+        />
+        <Route
+          path='login'
+          element={
+            <RedirectOnAuth>
+              <LoginPage />
+            </RedirectOnAuth>
+          }
+        />
+        <Route
+          path='signup'
+          element={
+            <RedirectOnAuth>
+              <SignupPage />
+            </RedirectOnAuth>
+          }
+        />
         <Route
           path='home/*'
           element={

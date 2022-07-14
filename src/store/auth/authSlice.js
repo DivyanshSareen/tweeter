@@ -1,16 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const token = window.localStorage.getItem("authToken");
 const initialState = {
-  userName: "",
-  password: "",
+  userName: "Bancobanco",
+  password: "Banco123",
   firstName: "",
   lastName: "",
   profilePicture: "default_pp.png",
   remember_me: true,
-  authToken: token !== null ? token : "",
-  isLoggedIn: token !== null ? true : false,
+  authToken: "",
+  isLoggedIn: false,
   status: "idle",
 };
 
@@ -65,9 +64,16 @@ const authSlice = createSlice({
       state.description = action.payload.foundUser.description;
       state.portfolioURL = action.payload.foundUser.portfolioURL;
       state.authToken = action.payload.encodedToken;
-      console.log(action.payload);
       if (state.remember_me === true) {
         window.localStorage.setItem("authToken", action.payload.encodedToken);
+        window.localStorage.setItem(
+          "userName",
+          action.payload.foundUser.username
+        );
+        window.localStorage.setItem(
+          "password",
+          action.payload.foundUser.password
+        );
       }
       state.isLoggedIn = true;
       state.status = "fulfilled";

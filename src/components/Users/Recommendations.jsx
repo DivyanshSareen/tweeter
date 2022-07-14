@@ -1,8 +1,22 @@
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import { useEffect } from "react";
+import axios from "axios";
 
 const Recommendations = () => {
+  const [users, setUsers] = useState([]);
+
+  // const getUsers = async () => {
+  //   try {
+  //     return await axios.get("api/users").then((res) => console.log(res.data));
+  //   } catch (e) {
+  //     return [];
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getUsers();
+  // }, []);
   return (
     <section className='recommend'>
       <h4 className='h6'>Who to Follow?</h4>
