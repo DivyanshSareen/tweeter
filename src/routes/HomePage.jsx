@@ -1,39 +1,38 @@
-import { useSelector } from "react-redux/es/exports";
-// import { logoutUser } from "../store/auth/authSlice";
+import { Routes, Route } from "react-router-dom";
 import Sidebar from "../components/Sidebar/Sidebar";
 import CreatePost from "../components/Posts/CreatePost";
 import Post from "../components/Posts/Post";
 import Recommendations from "../components/Users/Recommendations";
 
 import "../styles/home.css";
+import ProfilePage from "./ProfilePage";
 
 const HomePage = () => {
-  const auth = useSelector((store) => store.auth);
-  // const dispatch = useDispatch();
   return (
     <>
       <div className='homepage'>
-        <Sidebar auth={auth} />
+        <Sidebar />
         <div className='posts'>
-          <CreatePost />
-          <section className='timeline'>
-            <Post />
-            <Post />
-            <Post />
-          </section>
+          <Routes>
+            <Route
+              path='/'
+              element={
+                <>
+                  <CreatePost />
+                  <section className='timeline'>
+                    <Post />
+                    <Post />
+                    <Post />
+                  </section>
+                </>
+              }></Route>
+            <Route path='profile' element={<ProfilePage />}></Route>
+          </Routes>
         </div>
         <div className='users'>
           <Recommendations />
         </div>
       </div>
-      {/* Hello from HomePage UserName: {auth.userName}
-      <button
-        className='btn btn-ghost'
-        onClick={() => {
-          dispatch(logoutUser());
-        }}>
-        Logout
-      </button> */}
     </>
   );
 };

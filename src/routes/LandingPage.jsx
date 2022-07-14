@@ -1,19 +1,9 @@
 import "../styles/landing.css";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux/es/exports";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCrow } from "@fortawesome/free-solid-svg-icons";
-import { useEffect } from "react";
 
 const LandingPage = () => {
-  const auth = useSelector((store) => store.auth);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (auth.isLoggedIn === true) navigate("/home", { replace: true });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <header className='landing'>
       <div className='landing-poster'>

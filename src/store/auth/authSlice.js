@@ -1,14 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const token = window.localStorage.getItem("authToken");
-console.log(token);
 const initialState = {
-  userName: "bancobanco",
+  userName: "Bancobanco",
   password: "Banco123",
+  firstName: "",
+  lastName: "",
+  profilePicture: "default_pp.png",
   remember_me: true,
-  authToken: token !== null ? token : "",
-  isLoggedIn: token !== null ? true : false,
+  authToken: "",
+  isLoggedIn: false,
   status: "idle",
 };
 
@@ -21,7 +22,7 @@ export const loginUser = createAsyncThunk(
         username: state.auth.userName,
         password: state.auth.password,
       })
-      .then((res) => res.data.encodedToken);
+      .then((res) => res.data);
   }
 );
 
@@ -33,8 +34,11 @@ export const signupUser = createAsyncThunk(
       .post("/api/auth/signup", {
         username: state.auth.userName,
         password: state.auth.password,
+        firstName: state.auth.firstName,
+        lastName: state.auth.lastName,
+        profilePicture: "default_pp.png",
       })
-      .then((res) => res.data.encodedToken);
+      .then((res) => res.data);
   }
 );
 
@@ -47,15 +51,31 @@ const authSlice = createSlice({
     },
     logoutUser: (state, action) => {
       window.localStorage.clear("authToken");
+      window.localStorage.clear("userName");
+      window.localStorage.clear("password");
       state.authToken = "";
       state.isLoggedIn = false;
     },
   },
   extraReducers: {
     [loginUser.fulfilled]: (state, action) => {
-      state.authToken = action.payload;
+      state.firstName = action.payload.foundUser.firstName;
+      state.lastName = action.payload.foundUser.lastName;
+      state.userName = action.payload.foundUser.username;
+      state.profilePicture = action.payload.foundUser.profilePicture;
+      state.description = action.payload.foundUser.description;
+      state.portfolioURL = action.payload.foundUser.portfolioURL;
+      state.authToken = action.payload.encodedToken;
       if (state.remember_me === true) {
         window.localStorage.setItem("authToken", action.payload.encodedToken);
+        window.localStorage.setItem(
+          "userName",
+          action.payload.foundUser.username
+        );
+        window.localStorage.setItem(
+          "password",
+          action.payload.foundUser.password
+        );
       }
       state.isLoggedIn = true;
       state.status = "fulfilled";

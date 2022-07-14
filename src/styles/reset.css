@@ -13,3 +13,8 @@
     background: white;
     color: var(--primary-darker);
 }
+
+a {
+    all: unset;
+    cursor: pointer;
+}
