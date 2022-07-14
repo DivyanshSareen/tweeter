@@ -51,6 +51,8 @@ const authSlice = createSlice({
     },
     logoutUser: (state, action) => {
       window.localStorage.clear("authToken");
+      window.localStorage.clear("userName");
+      window.localStorage.clear("password");
       state.authToken = "";
       state.isLoggedIn = false;
     },

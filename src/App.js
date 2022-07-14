@@ -7,7 +7,7 @@ import HomePage from "./routes/HomePage";
 import RequiresAuth from "./components/RequiresAuth/RequiresAuth";
 import ErrorPage from "./routes/ErrorPage";
 import Mockman from "mockman-js";
-import RedirectOnAuth from "./components/RedirectOnAuth";
+import RedirectOnAuth from "./components/RedirectOnAuth/RedirectOnAuth";
 
 function App() {
   return (

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux/es/exports";
-import { updateField } from "../store/auth/authSlice";
-import { loginUser } from "../store/auth/authSlice";
+import { updateField } from "../../store/auth/authSlice";
+import { loginUser } from "../../store/auth/authSlice";
 import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
