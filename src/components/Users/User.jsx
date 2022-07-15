@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
+import { followUser } from "../../store/users/usersSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
-const User = ({ user, followUser }) => {
+const User = ({ user }) => {
   const dispatch = useDispatch();
   return (
     <div className='rec-user'>

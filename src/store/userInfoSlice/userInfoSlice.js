@@ -14,6 +14,7 @@ const initialState = {
     bookmarks: [],
   },
   authToken: "",
+  userIsUpdated: false,
 };
 
 export const userInfoSlice = createSlice({
@@ -23,11 +24,16 @@ export const userInfoSlice = createSlice({
     updateUserInfo: (state, action) => {
       state.userDetails = action.payload.foundUser;
       state.authToken = action.payload.encodedToken;
-      console.log(action.payload);
+    },
+    updateUserFollowingInfo: (state, action) => {
+      state.userDetails = action.payload;
+      // toggles to trigger useEffect some where
+      state.userIsUpdated = state.userIsUpdated ? false : true;
     },
   },
 });
 
-export const { updateUserInfo } = userInfoSlice.actions;
+export const { updateUserInfo, updateUserFollowingInfo } =
+  userInfoSlice.actions;
 
 export default userInfoSlice.reducer;

@@ -1,11 +1,28 @@
 import { useEffect } from "react";
 import User from "./User";
 import { useSelector, useDispatch } from "react-redux/es/exports";
-import { getListOfUsers, followUser } from "../../store/users/usersSlice";
+import {
+  getListOfUsers,
+  filterRecommendedUsers,
+} from "../../store/users/usersSlice";
+import { updateUserFollowingInfo } from "../../store/userInfoSlice/userInfoSlice";
 
 const Recommendations = () => {
   const users = useSelector((store) => store.users);
+  const userInfo = useSelector((store) => store.userInfo);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (users.followStatus === "followed") {
+      dispatch(updateUserFollowingInfo(users.updatedUserInfo));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [users.followStatus]);
+
+  useEffect(() => {
+    dispatch(filterRecommendedUsers(userInfo.userDetails));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInfo.userIsUpdated]);
 
   useEffect(() => {
     dispatch(getListOfUsers());
@@ -16,8 +33,8 @@ const Recommendations = () => {
     <section className='recommend'>
       <h4 className='h6'>Who to Follow?</h4>
       <div className='recommendations'>
-        {users.listOfUsers.map((user) => (
-          <User key={user._id} user={user} followUser={followUser} />
+        {users.listOfRecommendedUsers.map((user) => (
+          <User key={user._id} user={user} />
         ))}
       </div>
     </section>
