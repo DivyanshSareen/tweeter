@@ -34,7 +34,7 @@ const Sidebar = () => {
         <FontAwesomeIcon className='sidebar-logo--icon' icon={faBell} />
         Notifications
       </div>
-      <Link to='/home/profile'>
+      <Link to='profile'>
         <div className='sidebar-option'>
           <FontAwesomeIcon className='sidebar-logo--icon' icon={faUser} />
           Profile

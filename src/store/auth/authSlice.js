@@ -11,6 +11,7 @@ const initialState = {
   authToken: "",
   isLoggedIn: false,
   status: "idle",
+  userData: {},
 };
 
 export const loginUser = createAsyncThunk(
