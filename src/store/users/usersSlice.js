@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { updateUserFollowingInfo } from "../userInfoSlice/userInfoSlice";
 import axios from "axios";
 
 const initialState = {
@@ -19,7 +20,7 @@ export const getListOfUsers = createAsyncThunk(
 
 export const followUser = createAsyncThunk(
   "/users/followUser",
-  async (userId, { getState }) => {
+  async (userId, { dispatch, getState }) => {
     const state = getState();
     return axios
       .post(
@@ -29,7 +30,10 @@ export const followUser = createAsyncThunk(
           headers: { authorization: state.userInfo.authToken },
         }
       )
-      .then((res) => res.data);
+      .then((res) => {
+        dispatch(updateUserFollowingInfo(res.data.user));
+        updateListOfUsers(res.data.followUser);
+      });
   }
 );
 
@@ -46,7 +50,15 @@ export const getSpecificUser = createAsyncThunk(
 const usersSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {},
+  reducers: {
+    updateListOfUsers: (state, action) => {
+      const followUser = action.payload;
+      const index = state.listOfUsers.findIndex(
+        (user) => user._id === followUser._id
+      );
+      state.listOfUsers[index] = followUser;
+    },
+  },
   extraReducers: {
     [getListOfUsers.fulfilled]: (state, action) => {
       state.listOfUsers = action.payload;
@@ -59,4 +71,5 @@ const usersSlice = createSlice({
   },
 });
 
+export const { updateListOfUsers } = usersSlice.actions;
 export default usersSlice.reducer;

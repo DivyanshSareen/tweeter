@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faComment } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faBookmark, faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Post = ({ post }) => {
   return (
@@ -19,10 +19,13 @@ const Post = ({ post }) => {
         <p className='post-text'>{post.content}</p>
         <div className='post-options'>
           <button className='btn btn-ghost'>
+            <FontAwesomeIcon className='sidebar-logo--icon' icon={faEye} />
+          </button>
+          <button className='btn btn-ghost'>
             <FontAwesomeIcon className='sidebar-logo--icon' icon={faHeart} />
           </button>
           <button className='btn btn-ghost'>
-            <FontAwesomeIcon className='sidebar-logo--icon' icon={faComment} />
+            <FontAwesomeIcon className='sidebar-logo--icon' icon={faBookmark} />
           </button>
         </div>
       </div>

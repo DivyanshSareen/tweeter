@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getSpecificUser } from "../store/users/usersSlice";
+import { followUser } from "../store/users/usersSlice";
+
 const UserPage = () => {
   const params = useParams();
   const users = useSelector((store) => store.users);
@@ -28,7 +30,13 @@ const UserPage = () => {
           </h5>
           <p className='sub-title1'>@{users?.specificUser?.username}</p>
           <div className='profile-options'>
-            <button className='btn btn-ghost'>Follow</button>
+            <button
+              className='btn btn-ghost'
+              onClick={() => {
+                dispatch(followUser(users.specificUser._id));
+              }}>
+              Follow
+            </button>
           </div>
           <p className='paragraph1 center-text'>
             {users?.specificUser?.description}

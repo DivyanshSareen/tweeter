@@ -27,8 +27,6 @@ export const userInfoSlice = createSlice({
     },
     updateUserFollowingInfo: (state, action) => {
       state.userDetails = action.payload;
-      // toggles to trigger useEffect some where
-      state.userIsUpdated = state.userIsUpdated ? false : true;
     },
   },
 });
