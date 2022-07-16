@@ -1,18 +1,17 @@
 import Loading from "../components/Loading/Loading";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getSpecificUser } from "../store/users/usersSlice";
-import axios from "axios";
-
 const UserPage = () => {
   const params = useParams();
-  const [user, setUser] = useState({});
   const users = useSelector((store) => store.users);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getSpecificUser(params.userId));
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.userId]);
 
   return (
@@ -39,7 +38,7 @@ const UserPage = () => {
               target='_blank'
               href={users?.specificUser?.portfolioURL}
               rel='noreferrer'>
-              {user?.portfolioURL}
+              {users?.portfolioURL}
             </a>
           </p>
           <div className='profile-stats'>
