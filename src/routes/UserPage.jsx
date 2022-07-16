@@ -28,6 +28,9 @@ const UserPage = () => {
             {users?.specificUser?.firstName} {users?.specificUser?.lastName}
           </h5>
           <p className='sub-title1'>@{users?.specificUser?.username}</p>
+          <div className='profile-options'>
+            <button className='btn btn-ghost'>Follow</button>
+          </div>
           <p className='paragraph1 center-text'>
             {users?.specificUser?.description}
           </p>

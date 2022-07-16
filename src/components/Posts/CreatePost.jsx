@@ -10,7 +10,14 @@ const CreatePost = () => {
       axios
         .post(
           `api/posts`,
-          { postData: { content: post } },
+          {
+            postData: {
+              content: post,
+              firstName: userInfo.userDetails.firstName,
+              lastName: userInfo.userDetails.lastName,
+              userImage: userInfo.userDetails.profilePicture,
+            },
+          },
           {
             headers: { authorization: userInfo.authToken },
           }

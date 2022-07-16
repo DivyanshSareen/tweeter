@@ -17,6 +17,9 @@ export const posts = [
       dislikedBy: [],
     },
     username: "michael",
+    firstName: "Michael",
+    lastName: "Scott",
+    userImage: "user_profiles/michael.png",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     comments: [
@@ -49,7 +52,9 @@ export const posts = [
       dislikedBy: [],
     },
     username: "michael",
-
+    firstName: "Michael",
+    lastName: "Scott",
+    userImage: "user_profiles/michael.png",
     comments: [
       {
         _id: uuid(),
@@ -83,6 +88,9 @@ export const posts = [
       dislikedBy: [],
     },
     username: "dwight",
+    firstName: "Dwight",
+    lastName: "Shrute",
+    userImage: "user_profiles/dwight.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     comments: [
@@ -116,6 +124,9 @@ export const posts = [
       dislikedBy: [],
     },
     username: "dwight",
+    firstName: "Dwight",
+    lastName: "Shrute",
+    userImage: "user_profiles/dwight.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     comments: [

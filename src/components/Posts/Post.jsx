@@ -5,11 +5,16 @@ const Post = ({ post }) => {
   return (
     <div className='post'>
       <div className='avatar'>
-        <img src={require("../../assets/landing1.jpg")} alt='avatar-img'></img>
+        <img
+          src={require("../../assets/" + post.userImage)}
+          alt='avatar-img'></img>
       </div>
       <div className='post-content'>
         <p className='post-author'>
-          <b>Banco banco</b> @{post.username}
+          <b>
+            {post.firstName} {post.lastName}
+          </b>
+          @{post.username}
         </p>
         <p className='post-text'>{post.content}</p>
         <div className='post-options'>
