@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import User from "./User";
-import { useSelector, useDispatch } from "react-redux/es/exports";
+import { useSelector } from "react-redux/es/exports";
 import axios from "axios";
 
 const Recommendations = () => {
   const [users, setUsers] = useState([]);
   const userInfo = useSelector((store) => store.userInfo);
   const auth = useSelector((store) => store.auth);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (auth.status === "fulfilled") {
