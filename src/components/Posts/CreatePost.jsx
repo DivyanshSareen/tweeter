@@ -23,7 +23,9 @@ const CreatePost = () => {
   return (
     <section className='create-post'>
       <div className='avatar'>
-        <img src={require("../../assets/landing1.jpg")} alt='avatar-img'></img>
+        <img
+          src={require(`../../assets/${userInfo.userDetails.profilePicture}`)}
+          alt='avatar-img'></img>
       </div>
       <form
         onSubmit={(e) => {

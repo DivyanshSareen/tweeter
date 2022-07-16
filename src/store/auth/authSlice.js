@@ -61,7 +61,6 @@ const authSlice = createSlice({
   extraReducers: {
     [loginUser.fulfilled]: (state, action) => {
       state.userData = action.payload;
-      console.log(action.payload.encodedToken);
       state.authToken = action.payload.encodedToken;
       if (state.remember_me === true) {
         window.localStorage.setItem("authToken", action.payload.encodedToken);

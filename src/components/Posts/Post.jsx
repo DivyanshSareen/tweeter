@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faComment } from "@fortawesome/free-solid-svg-icons";
 
 const Post = ({ post }) => {
-  console.log(post);
   return (
     <div className='post'>
       <div className='avatar'>

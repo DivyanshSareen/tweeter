@@ -2,11 +2,12 @@ import { useDispatch } from "react-redux";
 import { followUser } from "../../store/users/usersSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const User = ({ user }) => {
   const dispatch = useDispatch();
   return (
-    <div className='rec-user'>
+    <Link to={"user/" + user._id} className='rec-user'>
       <div className='avatar'>
         <img
           src={require(`../../assets/${user?.profilePicture}`)}
@@ -29,7 +30,7 @@ const User = ({ user }) => {
           />
         </button>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -1,3 +1,8 @@
 @import "./create-post.css";
 @import "./timeline.css";
 @import "./profile.css";
+
+.timeline-title{
+    font-weight: bold;
+    padding: 1em;
+}

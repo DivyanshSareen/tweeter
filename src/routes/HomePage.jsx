@@ -11,19 +11,15 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(getListOfPosts());
   }, []);
-  useEffect(() => {
-    if (posts.status === "fulfilled") {
-      console.log(posts.postsList);
-    }
-  }, [posts.status]);
   return (
     <>
       <div className='homepage'>
         <div className='posts'>
           <CreatePost />
           <section className='timeline'>
+            <h5 className='h6 timeline-title'>Timeline</h5>
             {posts.postsList.map((post) => (
-              <Post post={post} />
+              <Post key={post._id} post={post} />
             ))}
           </section>
         </div>
