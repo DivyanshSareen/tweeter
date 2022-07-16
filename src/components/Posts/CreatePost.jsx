@@ -10,7 +10,7 @@ const CreatePost = () => {
       axios
         .post(
           `api/posts`,
-          { post: "fdsafwerwerwerwer" },
+          { postData: { content: post } },
           {
             headers: { authorization: userInfo.authToken },
           }

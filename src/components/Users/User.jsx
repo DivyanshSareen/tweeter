@@ -1,8 +1,10 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 const User = ({ user }) => {
   return (
-    <Link to={"user/" + user._id} className='rec-user'>
+    <div className='rec-user'>
       <div className='avatar'>
         <img
           src={require(`../../assets/${user?.profilePicture}`)}
@@ -14,7 +16,12 @@ const User = ({ user }) => {
         </p>
         <p className='recc-user--name'>@{user?.username}</p>
       </div>
-    </Link>
+      <Link to={user._id} className='rec-options'>
+        <button className='btn btn-ghost'>
+          <FontAwesomeIcon icon={faEye} />
+        </button>
+      </Link>
+    </div>
   );
 };
 

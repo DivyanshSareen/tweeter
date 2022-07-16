@@ -3,22 +3,17 @@ import axios from "axios";
 
 const initialState = {
   listOfUsers: [],
-  listOfRecommendedUsers: [],
+  specificUser: {},
   followStatus: "idle",
   userListStatus: "idle",
+  specificUserStatus: "idle",
   updatedUserInfo: {},
 };
 
 export const getListOfUsers = createAsyncThunk(
   "/users/getListOfUsers",
   async (args, { getState }) => {
-    const state = getState();
-    return axios
-      .get("/api/users")
-      .then((res) => res.data.users)
-      .then((users) =>
-        users.filter((user) => user._id !== state.userInfo.userDetails._id)
-      );
+    return axios.get("/api/users").then((res) => res.data.users);
   }
 );
 
@@ -38,41 +33,30 @@ export const followUser = createAsyncThunk(
   }
 );
 
+export const getSpecificUser = createAsyncThunk(
+  "/users/getSpecifiUser",
+  async (userId, { getState }) => {
+    return await axios
+      .get("api/users/" + userId)
+      .catch((e) => console.log(e))
+      .then((res) => res.data.user);
+  }
+);
+
 const usersSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {
-    filterRecommendedUsers: (state, action) => {
-      if (action.payload.following !== undefined) {
-        state.listOfRecommendedUsers = state.listOfUsers
-          .filter((user) => user._id !== action.payload._id)
-          .filter(
-            (user) =>
-              action.payload.following.some((ele) => ele._id === user._id) ===
-              false
-          );
-      } else
-        state.listOfRecommendedUsers = state.listOfUsers.filter(
-          (user) => user._id !== action.payload._id
-        );
-    },
-  },
+  reducers: {},
   extraReducers: {
     [getListOfUsers.fulfilled]: (state, action) => {
       state.listOfUsers = action.payload;
-      state.listOfRecommendedUsers = action.payload;
       state.userListStatus = "fulfilled";
     },
-    [followUser.pending]: (state) => {
-      state.followStatus = "pending";
-    },
-    [followUser.fulfilled]: (state, action) => {
-      state.updatedUserInfo = action.payload.user;
-      state.followStatus = "followed";
+    [getSpecificUser.fulfilled]: (state, action) => {
+      state.specificUser = action.payload;
+      state.specificUserStatus = "fulfilled";
     },
   },
 });
-
-export const { filterRecommendedUsers } = usersSlice.actions;
 
 export default usersSlice.reducer;

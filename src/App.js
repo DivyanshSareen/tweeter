@@ -9,41 +9,29 @@ import UserPage from "./routes/UserPage";
 import RequiresAuth from "./components/RequiresAuth/RequiresAuth";
 import ErrorPage from "./routes/ErrorPage";
 import Mockman from "mockman-js";
-import RedirectOnAuth from "./components/RedirectOnAuth/RedirectOnAuth";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Recommendations from "./components/Users/Recommendations";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { updateUserInfo } from "./store/userInfoSlice/userInfoSlice";
 
 function App() {
   const auth = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (auth.status === "fulfilled") {
+      dispatch(updateUserInfo(auth.userData));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [auth.status]);
   return (
     <div className={auth.isLoggedIn ? "App" : ""}>
       {auth.isLoggedIn && <Sidebar />}
       <Routes>
-        <Route
-          path='/'
-          element={
-            <RedirectOnAuth>
-              <LandingPage />
-            </RedirectOnAuth>
-          }
-        />
-        <Route
-          path='login'
-          element={
-            <RedirectOnAuth>
-              <LoginPage />
-            </RedirectOnAuth>
-          }
-        />
-        <Route
-          path='signup'
-          element={
-            <RedirectOnAuth>
-              <SignupPage />
-            </RedirectOnAuth>
-          }
-        />
+        <Route path='/' element={<LandingPage />} />
+        <Route path='login' element={<LoginPage />} />
+        <Route path='signup' element={<SignupPage />} />
         <Route
           path='home'
           element={
@@ -60,7 +48,7 @@ function App() {
             </RequiresAuth>
           }
         />
-        <Route path='user/:userId' element={<UserPage />} />
+        <Route path='/:userId' element={<UserPage />} />
         <Route path='error' element={<ErrorPage />} />
         <Route path='mock' element={<Mockman />} />
       </Routes>
