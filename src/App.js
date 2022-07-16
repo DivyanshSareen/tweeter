@@ -1,5 +1,5 @@
 import "./styles/App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useSearchParams } from "react-router-dom";
 import LandingPage from "./routes/LandingPage";
 import LoginPage from "./routes/LoginPage";
 import SignupPage from "./routes/SignupPage";
@@ -11,11 +11,13 @@ import Mockman from "mockman-js";
 import RedirectOnAuth from "./components/RedirectOnAuth/RedirectOnAuth";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Recommendations from "./components/Users/Recommendations";
+import { useSelector } from "react-redux";
 
 function App() {
+  const auth = useSelector((store) => store.auth);
   return (
-    <div className='App'>
-      <Sidebar />
+    <div className={auth.isLoggedIn ? "App" : ""}>
+      {auth.isLoggedIn && <Sidebar />}
       <Routes>
         <Route
           path='/'
@@ -61,9 +63,11 @@ function App() {
         <Route path='mock' element={<Mockman />} />
       </Routes>
 
-      <div className='users'>
-        <Recommendations />
-      </div>
+      {auth.isLoggedIn && (
+        <div className='users'>
+          <Recommendations />
+        </div>
+      )}
     </div>
   );
 }

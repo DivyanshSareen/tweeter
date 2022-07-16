@@ -7,15 +7,15 @@ const CreatePost = () => {
   const userInfo = useSelector((store) => store.userInfo);
   const createPost = () => {
     try {
-      axios.post(
-        `api/posts`,
-        {
-          post,
-        },
-        {
-          headers: { authorization: userInfo.authToken },
-        }
-      );
+      axios
+        .post(
+          `api/posts`,
+          { post: "fdsafwerwerwerwer" },
+          {
+            headers: { authorization: userInfo.authToken },
+          }
+        )
+        .then((res) => console.log(res));
     } finally {
       setPost("");
     }
