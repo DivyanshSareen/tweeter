@@ -1,5 +1,5 @@
 import "./styles/App.css";
-import { Route, Routes, useSearchParams } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import LandingPage from "./routes/LandingPage";
 import LoginPage from "./routes/LoginPage";
 import SignupPage from "./routes/SignupPage";
