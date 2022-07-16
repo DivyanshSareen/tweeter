@@ -1,10 +1,35 @@
+import axios from "axios";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
 const CreatePost = () => {
+  const [post, setPost] = useState("");
+  const userInfo = useSelector((store) => store.userInfo);
+  const createPost = () => {
+    try {
+      axios.post(
+        `api/posts`,
+        {
+          post,
+        },
+        {
+          headers: { authorization: userInfo.authToken },
+        }
+      );
+    } finally {
+      setPost("");
+    }
+  };
   return (
     <section className='create-post'>
       <div className='avatar'>
         <img src={require("../../assets/landing1.jpg")} alt='avatar-img'></img>
       </div>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          createPost();
+        }}>
         <div className='text-area'>
           <label className='textarea-label' htmlFor='desc'>
             What's on your mind?
@@ -14,6 +39,10 @@ const CreatePost = () => {
             cols='40'
             rows='8'
             id='desc'
+            value={post}
+            onChange={(e) => {
+              setPost(e.target.value);
+            }}
             placeholder='Start typing!'></textarea>
           <input type='submit' className='btn btn-ghost' value='post'></input>
         </div>

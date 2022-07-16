@@ -13,8 +13,6 @@ export const getListOfUsers = createAsyncThunk(
   "/users/getListOfUsers",
   async (args, { getState }) => {
     const state = getState();
-
-    console.log(state.userInfo.userDetails);
     return axios
       .get("/api/users")
       .then((res) => res.data.users)
@@ -57,7 +55,6 @@ const usersSlice = createSlice({
         state.listOfRecommendedUsers = state.listOfUsers.filter(
           (user) => user._id !== action.payload._id
         );
-      console.log(action.payload.following);
     },
   },
   extraReducers: {
