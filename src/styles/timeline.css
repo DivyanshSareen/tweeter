@@ -5,20 +5,18 @@
     padding: 0.5em;
 }
 
-.post{
-    height: 8em;
+.timeline > .post{
+    margin: 1em;
     display: grid;
     grid-template-columns: 1fr 5fr;
 }
 
-.post > .avatar{
-    grid-area: "avatar";
-}
-
-.post-content{
-    grid-area: "content";
-}
-
 .post-options{
-    grid-area: "options";
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post-logo--icon{
+    padding-left: 5px;
 }

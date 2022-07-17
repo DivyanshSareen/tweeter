@@ -25,7 +25,10 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
+        username: "thenarddog",
+        firstName: "Andy",
+        lastName: "Bernard",
+        profilePicture: "user_profiles/andy.jpg",
         text: "Interesting",
         votes: {
           upvotedBy: [],
@@ -34,8 +37,11 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "sohamshah",
-        text: "Wow!",
+        username: "piartehunter",
+        firstName: "Zoro",
+        lastName: "Roronoa",
+        profilePicture: "user_profiles/zoro.jpg",
+        text: "Where am I?",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -58,7 +64,10 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
+        username: "Bancobanco",
+        firstName: "Banco",
+        lastName: "Banco",
+        profilePicture: "user_profiles/banco.png",
         text: "Interesting",
         votes: {
           upvotedBy: [],
@@ -67,8 +76,11 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "sohamshah",
+        username: "dwight",
+        firstName: "Dwight",
+        lastName: "Schrute",
         text: "Wow!",
+        profilePicture: "user_profiles/dwight.jpg",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -89,14 +101,17 @@ export const posts = [
     },
     username: "dwight",
     firstName: "Dwight",
-    lastName: "Shrute",
+    lastName: "Schrute",
     userImage: "user_profiles/dwight.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
+        username: "Bancobanco",
+        firstName: "Banco",
+        lastName: "Banco",
+        profilePicture: "user_profiles/banco.png",
         text: "Interesting",
         votes: {
           upvotedBy: [],
@@ -105,7 +120,10 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "sohamshah",
+        username: "dwight",
+        firstName: "Dwight",
+        lastName: "Schrute",
+        profilePicture: "user_profiles/dwight.jpg",
         text: "Wow!",
         votes: {
           upvotedBy: [],
@@ -125,14 +143,17 @@ export const posts = [
     },
     username: "dwight",
     firstName: "Dwight",
-    lastName: "Shrute",
+    lastName: "Schrute",
     userImage: "user_profiles/dwight.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     comments: [
       {
         _id: uuid(),
-        username: "shubhamsoni",
+        username: "Bancobanco",
+        firstName: "Banco",
+        lastName: "Banco",
+        profilePicture: "user_profiles/banco.png",
         text: "Interesting",
         votes: {
           upvotedBy: [],
@@ -141,7 +162,10 @@ export const posts = [
       },
       {
         _id: uuid(),
-        username: "sohamshah",
+        username: "dwight",
+        firstName: "Dwight",
+        lastName: "Schrute",
+        profilePicture: "user_profiles/dwight.jpg",
         text: "Wow!",
         votes: {
           upvotedBy: [],

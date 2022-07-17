@@ -7,12 +7,15 @@ import { useEffect } from "react";
 
 const HomePage = () => {
   const posts = useSelector((store) => store.posts);
+  const auth = useSelector((store) => store.auth);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getListOfPosts());
-
+    if (auth.status === "fulfilled") {
+      dispatch(getListOfPosts());
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [auth.status]);
+
   return (
     <>
       <div className='homepage'>

@@ -28,10 +28,16 @@ export const userInfoSlice = createSlice({
     updateUserFollowingInfo: (state, action) => {
       state.userDetails = action.payload;
     },
+    updateUserBookmarksInfo: (state, action) => {
+      state.userDetails.bookmarks = action.payload;
+    },
   },
 });
 
-export const { updateUserInfo, updateUserFollowingInfo } =
-  userInfoSlice.actions;
+export const {
+  updateUserInfo,
+  updateUserFollowingInfo,
+  updateUserBookmarksInfo,
+} = userInfoSlice.actions;
 
 export default userInfoSlice.reducer;

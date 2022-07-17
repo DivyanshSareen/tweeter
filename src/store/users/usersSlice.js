@@ -37,6 +37,25 @@ export const followUser = createAsyncThunk(
   }
 );
 
+export const unfollowUser = createAsyncThunk(
+  "/users/unfollowUser",
+  async (userId, { dispatch, getState }) => {
+    const state = getState();
+    return axios
+      .post(
+        `api/users/unfollow/${userId}`,
+        {},
+        {
+          headers: { authorization: state.userInfo.authToken },
+        }
+      )
+      .then((res) => {
+        dispatch(updateUserFollowingInfo(res.data.user));
+        updateListOfUsers(res.data.followUser);
+      });
+  }
+);
+
 export const getSpecificUser = createAsyncThunk(
   "/users/getSpecifiUser",
   async (userId, { getState }) => {
