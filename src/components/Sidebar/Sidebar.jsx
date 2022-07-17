@@ -9,9 +9,13 @@ import {
   faUser,
   faHome,
 } from "@fortawesome/free-solid-svg-icons";
+import Modal from "../Modal/Modal";
+import CreatePost from "../Posts/CreatePost";
+import { useState } from "react";
 
 const Sidebar = () => {
   const userInfo = useSelector((store) => store.userInfo);
+  const [isHidden, setIsHidden] = useState(true);
   return (
     <div className='sidebar-menu'>
       <div className='sidebar-logo'>
@@ -42,6 +46,12 @@ const Sidebar = () => {
           Profile
         </div>
       </Link>
+      <button className='btn btn-ghost' onClick={() => setIsHidden(false)}>
+        +Create Post
+      </button>
+      <Modal isHidden={isHidden} setIsHidden={setIsHidden}>
+        <CreatePost />
+      </Modal>
       <div className='sidebar-profile'>
         <div className='avatar'>
           <img
