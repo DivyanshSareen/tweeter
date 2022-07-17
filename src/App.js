@@ -6,6 +6,8 @@ import SignupPage from "./routes/SignupPage";
 import HomePage from "./routes/HomePage";
 import ProfilePage from "./routes/ProfilePage";
 import UserPage from "./routes/UserPage";
+import PostPage from "./routes/PostPage";
+import BookmarksPage from "./routes/BookmarksPage";
 import RequiresAuth from "./components/RequiresAuth/RequiresAuth";
 import ErrorPage from "./routes/ErrorPage";
 import Mockman from "mockman-js";
@@ -48,7 +50,30 @@ function App() {
             </RequiresAuth>
           }
         />
-        <Route path='/:userId' element={<UserPage />} />
+        <Route
+          path='/:userId'
+          element={
+            <RequiresAuth>
+              <UserPage />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path='posts/:postId'
+          element={
+            <RequiresAuth>
+              <PostPage />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path='bookmarks'
+          element={
+            <RequiresAuth>
+              <BookmarksPage />
+            </RequiresAuth>
+          }
+        />
         <Route path='error' element={<ErrorPage />} />
         <Route path='mock' element={<Mockman />} />
       </Routes>
