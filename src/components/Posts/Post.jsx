@@ -11,34 +11,33 @@ import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
   const dispatch = useDispatch();
-  console.log(post);
   return (
     <div className='post'>
       <div className='avatar'>
         <img
-          src={require("../../assets/" + post.userImage)}
+          src={require("../../assets/" + post?.userImage)}
           alt='avatar-img'></img>
       </div>
       <div className='post-content'>
         <p className='post-author'>
           <b>
-            {post.firstName} {post.lastName}
+            {post?.firstName} {post?.lastName}
           </b>
-          @{post.username}
+          @{post?.username}
         </p>
-        <p className='post-text'>{post.content}</p>
+        <p className='post-text'>{post?.content}</p>
         <div className='post-options'>
-          <Link to={"../posts/" + post._id}>
+          <Link to={"../posts/" + post?._id}>
             <button className='btn btn-ghost'>
               <FontAwesomeIcon className='sidebar-logo--icon' icon={faEye} />
             </button>
           </Link>
           <div>
-            {post.likes.likeCount}
+            {post?.likes?.likeCount}
             <FontAwesomeIcon className='post-logo--icon' icon={faHeart} />
           </div>
           <div>
-            {post.comments.length}
+            {post?.comments?.length}
             <FontAwesomeIcon className='post-logo--icon' icon={faComment} />
           </div>
           <button
@@ -47,7 +46,7 @@ const Post = ({ post }) => {
               dispatch(
                 bookmarkPost({
                   path: "../api/users/bookmark/",
-                  postId: post._id,
+                  postId: post?._id,
                 })
               );
             }}>

@@ -5,6 +5,7 @@ import axios from "axios";
 const initialState = {
   postsList: [],
   status: "idle",
+  createPostStatus: "idle",
   specificPost: {},
   specificPostStatus: "idle",
 };
@@ -30,7 +31,6 @@ export const bookmarkPost = createAsyncThunk(
   "/posts/bookmarkPost",
 
   async (args, { dispatch, getState }) => {
-    console.log(args);
     const state = getState();
     await axios
       .post(
@@ -59,6 +59,31 @@ export const likePost = createAsyncThunk(
   }
 );
 
+export const createPost = createAsyncThunk(
+  "/posts/createPost",
+  async (args, { dispatch, getState }) => {
+    const state = getState();
+    axios
+      .post(
+        `api/posts`,
+        {
+          postData: {
+            content: args.content,
+            firstName: args.firstName,
+            lastName: args.lastName,
+            userImage: args.profilePicture,
+          },
+        },
+        {
+          headers: { authorization: state.userInfo.authToken },
+        }
+      )
+      .catch((e) => console.log(e))
+      .then((res) => res.data.posts)
+      .then((posts) => dispatch(updatePostsList(posts)));
+  }
+);
+
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -78,6 +103,12 @@ export const postsSlice = createSlice({
     [getSpecificPost.fulfilled]: (state, action) => {
       state.specificPost = action.payload;
       state.specificPostStatus = "fulfilled";
+    },
+    [createPost.pending]: (state) => {
+      state.createPostStatus = "pending";
+    },
+    [createPost.fulfilled]: (state, action) => {
+      state.createPostStatus = "fulfilled";
     },
   },
 });

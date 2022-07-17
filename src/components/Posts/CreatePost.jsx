@@ -1,32 +1,12 @@
-import axios from "axios";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { createPost } from "../../store/posts/postsSlice";
 
 const CreatePost = () => {
   const [post, setPost] = useState("");
+  const dispatch = useDispatch();
   const userInfo = useSelector((store) => store.userInfo);
-  const createPost = () => {
-    try {
-      axios
-        .post(
-          `api/posts`,
-          {
-            postData: {
-              content: post,
-              firstName: userInfo.userDetails.firstName,
-              lastName: userInfo.userDetails.lastName,
-              userImage: userInfo.userDetails.profilePicture,
-            },
-          },
-          {
-            headers: { authorization: userInfo.authToken },
-          }
-        )
-        .then((res) => console.log(res));
-    } finally {
-      setPost("");
-    }
-  };
+
   return (
     <section className='create-post'>
       <div className='avatar'>
@@ -37,7 +17,15 @@ const CreatePost = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          createPost();
+          dispatch(
+            createPost({
+              content: post,
+              firstName: userInfo.userDetails.firstName,
+              lastName: userInfo.userDetails.lastName,
+              profilePicture: userInfo.userDetails.profilePicture,
+            })
+          );
+          setPost("");
         }}>
         <div className='text-area'>
           <label className='textarea-label' htmlFor='desc'>

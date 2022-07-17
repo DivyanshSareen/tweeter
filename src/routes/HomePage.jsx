@@ -23,8 +23,8 @@ const HomePage = () => {
           <CreatePost />
           <section className='timeline'>
             <h5 className='h6 timeline-title'>Timeline</h5>
-            {posts.postsList.map((post) => (
-              <Post key={post._id} post={post} />
+            {posts?.postsList?.map((post) => (
+              <Post key={post?._id} post={post} />
             ))}
           </section>
         </div>

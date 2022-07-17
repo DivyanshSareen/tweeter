@@ -21,7 +21,7 @@ const PostPage = () => {
   const posts = useSelector((store) => store.posts);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getSpecificPost({ postId: params.postId, path: "../api/posts/" }));
+    dispatch(getSpecificPost({ postId: params.postId, path: "/api/posts/" }));
     console.log(posts.specificPost.comments);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.postId]);
@@ -30,17 +30,17 @@ const PostPage = () => {
       <section className='post'>
         <div className='avatar'>
           <img
-            src={require("../assets/" + posts.specificPost.userImage)}
+            src={require("../assets/" + posts?.specificPost?.userImage)}
             alt='avatar-img'></img>
         </div>
         <div className='post-content'>
           <p className='post-author'>
             <b>
-              {posts.specificPost.firstName} {posts.specificPost.lastName}
+              {posts?.specificPost?.firstName} {posts?.specificPost?.lastName}
             </b>
-            @{posts.specificPost.username}
+            @{posts?.specificPost?.username}
           </p>
-          <p className='post-text'>{posts.specificPost.content}</p>
+          <p className='post-text'>{posts?.specificPost?.content}</p>
         </div>
         <div className='post-option'>
           <button
@@ -49,7 +49,7 @@ const PostPage = () => {
               dispatch(
                 likePost({
                   path: "../api/posts/like/",
-                  postId: posts.specificPost._id,
+                  postId: posts?.specificPost?._id,
                 })
               );
             }}>
@@ -61,7 +61,7 @@ const PostPage = () => {
               dispatch(
                 bookmarkPost({
                   path: "../api/users/bookmark/",
-                  postId: posts.specificPost._id,
+                  postId: posts?.specificPost?._id,
                 })
               );
             }}>
@@ -73,8 +73,8 @@ const PostPage = () => {
         </div>
       </section>
       <section className='comments'>
-        {posts.specificPost.comments.map((comment) => (
-          <Comment key={comment._id} comment={comment} />
+        {posts?.specificPost?.comments?.map((comment) => (
+          <Comment key={comment?._id} comment={comment} />
         ))}
       </section>
     </div>
