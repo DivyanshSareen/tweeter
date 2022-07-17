@@ -1,5 +1,10 @@
 @import "./reset.css";
 
+.App {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+}
+
 .homepage{
     position: relative;
 }

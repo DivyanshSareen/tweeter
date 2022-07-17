@@ -1,9 +1,8 @@
-import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
-const User = ({ user, followUser }) => {
-  const dispatch = useDispatch();
+const User = ({ user }) => {
   return (
     <div className='rec-user'>
       <div className='avatar'>
@@ -17,17 +16,11 @@ const User = ({ user, followUser }) => {
         </p>
         <p className='recc-user--name'>@{user?.username}</p>
       </div>
-      <div className='rec-options'>
+      <Link to={user._id} className='rec-options'>
         <button className='btn btn-ghost'>
-          <FontAwesomeIcon
-            className='sidebar-logo--icon'
-            icon={faUserPlus}
-            onClick={() => {
-              dispatch(followUser(user._id));
-            }}
-          />
+          <FontAwesomeIcon icon={faEye} />
         </button>
-      </div>
+      </Link>
     </div>
   );
 };

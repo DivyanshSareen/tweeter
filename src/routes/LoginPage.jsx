@@ -11,7 +11,7 @@ import Loading from "../components/Loading/Loading";
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  const { auth } = useSelector((store) => store);
+  const auth = useSelector((store) => store.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -61,18 +61,6 @@ const LoginPage = () => {
             value={auth.password}
             onChange={onChangeHandler}
             required></input>
-        </div>
-        <div className='options'>
-          <div className='input remember-check'>
-            <input
-              name='remember_me'
-              type='checkbox'
-              className='input-data'
-              defaultChecked={auth.remember_me}
-              onChange={onChangeHandler}
-              id='remember'></input>
-            <label htmlFor='remember_me'>Remember me</label>
-          </div>
         </div>
         {auth.status === "pending" ? (
           <Loading />

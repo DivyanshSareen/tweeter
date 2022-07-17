@@ -1,35 +1,29 @@
-import { Routes, Route } from "react-router-dom";
-import Sidebar from "../components/Sidebar/Sidebar";
 import CreatePost from "../components/Posts/CreatePost";
 import Post from "../components/Posts/Post";
-import Recommendations from "../components/Users/Recommendations";
+import { useSelector, useDispatch } from "react-redux";
+import { getListOfPosts } from "../store/posts/postsSlice";
 import "../styles/home.css";
-import ProfilePage from "./ProfilePage";
+import { useEffect } from "react";
 
 const HomePage = () => {
+  const posts = useSelector((store) => store.posts);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getListOfPosts());
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <div className='homepage'>
-        <Sidebar />
         <div className='posts'>
-          <Routes>
-            <Route
-              path='/'
-              element={
-                <>
-                  <CreatePost />
-                  <section className='timeline'>
-                    <Post />
-                    <Post />
-                    <Post />
-                  </section>
-                </>
-              }></Route>
-            <Route path='profile' element={<ProfilePage />}></Route>
-          </Routes>
-        </div>
-        <div className='users'>
-          <Recommendations />
+          <CreatePost />
+          <section className='timeline'>
+            <h5 className='h6 timeline-title'>Timeline</h5>
+            {posts.postsList.map((post) => (
+              <Post key={post._id} post={post} />
+            ))}
+          </section>
         </div>
       </div>
     </>

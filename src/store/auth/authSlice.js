@@ -4,20 +4,16 @@ import axios from "axios";
 const initialState = {
   userName: "Bancobanco",
   password: "Banco123",
-  firstName: "",
-  lastName: "",
-  profilePicture: "default_pp.png",
-  remember_me: true,
-  authToken: "",
   isLoggedIn: false,
   status: "idle",
+  userData: {},
 };
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (args, { getState }) => {
     const state = getState();
-    return axios
+    return await axios
       .post("api/auth/login", {
         username: state.auth.userName,
         password: state.auth.password,
@@ -30,7 +26,7 @@ export const signupUser = createAsyncThunk(
   "/auth/signupUser",
   async (args, { getState }) => {
     const state = getState();
-    return axios
+    return await axios
       .post("/api/auth/signup", {
         username: state.auth.userName,
         password: state.auth.password,
@@ -50,9 +46,6 @@ const authSlice = createSlice({
       state[action.payload.field] = action.payload.value;
     },
     logoutUser: (state, action) => {
-      window.localStorage.clear("authToken");
-      window.localStorage.clear("userName");
-      window.localStorage.clear("password");
       state.authToken = "";
       state.isLoggedIn = false;
     },
@@ -60,18 +53,6 @@ const authSlice = createSlice({
   extraReducers: {
     [loginUser.fulfilled]: (state, action) => {
       state.userData = action.payload;
-      state.authToken = action.payload.encodedToken;
-      if (state.remember_me === true) {
-        window.localStorage.setItem("authToken", action.payload.encodedToken);
-        window.localStorage.setItem(
-          "userName",
-          action.payload.foundUser.username
-        );
-        window.localStorage.setItem(
-          "password",
-          action.payload.foundUser.password
-        );
-      }
       state.isLoggedIn = true;
       state.status = "fulfilled";
     },

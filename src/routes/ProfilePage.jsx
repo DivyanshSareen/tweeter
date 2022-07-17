@@ -25,7 +25,7 @@ const ProfilePage = () => {
         </button>
         <button className='btn btn-ghost'>Edit</button>
       </div>
-      <p className='paragraph1  center-text'>
+      <p className='paragraph1 center-text'>
         {userInfo.userDetails.description}
       </p>
       <p className='paragraph2'>
@@ -36,6 +36,16 @@ const ProfilePage = () => {
           {userInfo.userDetails.portfolioURL}
         </a>
       </p>
+      <div className='profile-stats'>
+        <div className='paragraph1 center-text'>
+          {userInfo.userDetails.following.length}
+        </div>
+        <div className='paragraph1 center-text'>
+          {userInfo.userDetails.followers.length}
+        </div>
+        <div className='paragraph1'>Following</div>
+        <div className='paragraph1'>Followers</div>
+      </div>
     </div>
   );
 };

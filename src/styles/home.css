@@ -2,7 +2,7 @@
 @import "./timeline.css";
 @import "./profile.css";
 
-.homepage{
-    display: grid;
-    grid-template-columns: 2fr 3fr 2fr;
+.timeline-title{
+    font-weight: bold;
+    padding: 1em;
 }
