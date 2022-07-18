@@ -4,12 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { getListOfPosts } from "../store/posts/postsSlice";
 import "../styles/home.css";
 import { useEffect } from "react";
-import ProfilePost from "../components/Posts/ProfilePost";
 
 const HomePage = () => {
   const posts = useSelector((store) => store.posts);
   const auth = useSelector((store) => store.auth);
-  const userInfo = useSelector((store) => store.userInfo);
   const dispatch = useDispatch();
   useEffect(() => {
     if (auth.status === "fulfilled") {
@@ -24,13 +22,9 @@ const HomePage = () => {
           <CreatePost />
           <section className='timeline'>
             <h5 className='h6 timeline-title'>Timeline</h5>
-            {posts?.postsList?.map((post) =>
-              post.username === auth.username ? (
-                <ProfilePost key={post?._id} post={post} />
-              ) : (
-                <Post key={post?._id} post={post} />
-              )
-            )}
+            {posts?.postsList?.map((post) => (
+              <Post key={post?._id} post={post} />
+            ))}
           </section>
         </div>
       </div>

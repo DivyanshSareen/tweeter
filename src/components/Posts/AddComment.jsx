@@ -1,19 +1,7 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { updatePost } from "../../store/posts/postsSlice";
-
-const UpdatePost = ({ originalPost }) => {
-  const [postContent, setPostContent] = useState(originalPost.content);
-  const dispatch = useDispatch();
-  const userInfo = useSelector((store) => store.userInfo);
-
+const AddComment = () => {
+  const dispatch = useDisptach();
   return (
     <section className='create-post'>
-      <div className='avatar'>
-        <img
-          src={require(`../../assets/${userInfo.userDetails.profilePicture}`)}
-          alt='avatar-img'></img>
-      </div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -40,4 +28,4 @@ const UpdatePost = ({ originalPost }) => {
   );
 };
 
-export default UpdatePost;
+export default AddComment;

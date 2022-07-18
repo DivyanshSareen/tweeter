@@ -55,7 +55,6 @@ export const likePost = createAsyncThunk(
         {},
         { headers: { authorization: state.userInfo.authToken } }
       )
-      .catch((e) => console.log(e))
       .then((res) => dispatch(updatePostsList(res.data.posts)));
   }
 );
@@ -79,7 +78,6 @@ export const createPost = createAsyncThunk(
           headers: { authorization: state.userInfo.authToken },
         }
       )
-      .catch((e) => console.log(e))
       .then((res) => res.data.posts)
       .then((posts) => dispatch(updatePostsList(posts)));
   }
@@ -93,7 +91,6 @@ export const deletePost = createAsyncThunk(
       .delete("/api/posts/" + args.postId, {
         headers: { authorization: state.userInfo.authToken },
       })
-      .catch((e) => console.log(e))
       .then((res) => console.log(res.data));
   }
 );
@@ -104,6 +101,43 @@ export const getPostsByUser = createAsyncThunk(
     return await axios
       .get("/api/posts/user/" + username)
       .then((res) => res.data.posts);
+  }
+);
+
+export const updatePost = createAsyncThunk(
+  "/posts/updatePost",
+  async (args, { dispatch, getState }) => {
+    const state = getState();
+    console.log(args);
+    return await axios
+      .post(
+        "/api/posts/edit/" + args._id,
+        {
+          postData: {
+            content: args.content,
+            firstName: args.firstName,
+            lastName: args.lastName,
+            userImage: args.profilePicture,
+          },
+        },
+        { headers: { authorization: state.userInfo.authToken } }
+      )
+      .then((res) => {
+        dispatch(getPostsByUser(state.userInfo.userDetails.username));
+        return res.data.posts;
+      });
+  }
+);
+
+export const postComment = createAsyncThunk(
+  "/posts/postComment",
+  async (args, { dispatch, getState }) => {
+    const state = getState();
+    return axios.post(
+      `/api/comments/add/${args.postId}`,
+      { commentData: { args: "fsdf" } },
+      { headers: { authorization: state.userInfo.authToken } }
+    );
   }
 );
 
@@ -142,6 +176,9 @@ export const postsSlice = createSlice({
     },
     [getPostsByUser.fulfilled]: (state, action) => {
       state.userPostsList = action.payload;
+    },
+    [updatePost.fulfilled]: (state, action) => {
+      state.postsList = action.payload;
     },
   },
 });

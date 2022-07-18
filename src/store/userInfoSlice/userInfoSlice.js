@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 const initialState = {
   userDetails: {
     _id: "",
@@ -16,6 +17,26 @@ const initialState = {
   authToken: "",
   userIsUpdated: false,
 };
+
+export const updateUserProfile = createAsyncThunk(
+  "/userInfo/updateUserProfile",
+  async (args, { dispatch, getState }) => {
+    const state = getState();
+    console.log(args);
+    axios
+      .post(
+        "/api/users/edit",
+        {
+          userData: {
+            description: args.description,
+            portfolioURL: args.portfolioURL,
+          },
+        },
+        { headers: { authorization: state.userInfo.authToken } }
+      )
+      .then((res) => dispatch(updateUserFollowingInfo(res.data.user)));
+  }
+);
 
 export const userInfoSlice = createSlice({
   name: "userInfo",

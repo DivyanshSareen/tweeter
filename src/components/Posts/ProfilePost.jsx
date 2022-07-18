@@ -7,12 +7,18 @@ import {
   faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import Modal from "../Modal/Modal";
+import UpdatePost from "./UpdatePost";
+import { useState } from "react";
 
 const ProfilePost = ({ post }) => {
   const dispatch = useDispatch();
+  const [isHidden, setIsHidden] = useState(true);
   return (
     <div className='post'>
+      <Modal isHidden={isHidden} setIsHidden={setIsHidden}>
+        <UpdatePost originalPost={post} />
+      </Modal>
       <div className='avatar'>
         <img
           src={require("../../assets/" + post?.userImage)}
@@ -27,11 +33,13 @@ const ProfilePost = ({ post }) => {
         </p>
         <p className='post-text'>{post?.content}</p>
         <div className='post-options'>
-          <Link to={"../posts/" + post?._id}>
-            <button className='btn btn-ghost'>
-              <FontAwesomeIcon className='sidebar-logo--icon' icon={faPencil} />
-            </button>
-          </Link>
+          <button
+            className='btn btn-ghost'
+            onClick={() => {
+              setIsHidden(false);
+            }}>
+            <FontAwesomeIcon className='sidebar-logo--icon' icon={faPencil} />
+          </button>
           <div>
             {post?.likes?.likeCount}
             <FontAwesomeIcon className='post-logo--icon' icon={faHeart} />

@@ -1,12 +1,19 @@
 import { useSelector, useDispatch } from "react-redux/es/exports";
 import { logoutUser } from "../store/auth/authSlice";
 import ProfileFeed from "../components/Feeds/ProfileFeed";
+import Modal from "../components/Modal/Modal";
+import EditProfile from "../components/Users/EditProfile";
+import { useState } from "react";
 
 const ProfilePage = () => {
   const userInfo = useSelector((store) => store.userInfo);
   const dispatch = useDispatch();
+  const [isHidden, setIsHidden] = useState(true);
   return (
     <div>
+      <Modal isHidden={isHidden} setIsHidden={setIsHidden}>
+        <EditProfile />
+      </Modal>
       <div className='profile'>
         <div className='avatar avatar-l'>
           <img
@@ -25,7 +32,13 @@ const ProfilePage = () => {
             }}>
             Logout
           </button>
-          <button className='btn btn-ghost'>Edit</button>
+          <button
+            className='btn btn-ghost'
+            onClick={() => {
+              setIsHidden(false);
+            }}>
+            Edit
+          </button>
         </div>
         <p className='paragraph1 center-text'>
           {userInfo.userDetails.description}
