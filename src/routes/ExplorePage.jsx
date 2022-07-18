@@ -7,7 +7,7 @@ const ExplorePage = () => {
     <div className='explore'>
       <h5 className='h5'>Explore</h5>
       {posts.postsList.map((post) => (
-        <Post post={post} />
+        <Post key={post._id} post={post} />
       ))}
     </div>
   );

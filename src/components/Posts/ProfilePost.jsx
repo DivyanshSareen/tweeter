@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import Modal from "../Modal/Modal";
-import UpdatePost from "./UpdatePost";
+import UpdatePostForm from "./UpdatePost";
 import { useState } from "react";
 
 const ProfilePost = ({ post }) => {
@@ -17,7 +17,7 @@ const ProfilePost = ({ post }) => {
   return (
     <div className='post'>
       <Modal isHidden={isHidden} setIsHidden={setIsHidden}>
-        <UpdatePost originalPost={post} />
+        <UpdatePostForm originalPost={post} />
       </Modal>
       <div className='avatar'>
         <img
