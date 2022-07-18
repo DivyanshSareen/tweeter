@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePost } from "../../store/posts/postsSlice";
 
-const UpdatePost = ({ originalPost }) => {
+const UpdatePosts = ({ originalPost }) => {
   const [postContent, setPostContent] = useState(originalPost.content);
   const dispatch = useDispatch();
   const userInfo = useSelector((store) => store.userInfo);
@@ -40,4 +40,4 @@ const UpdatePost = ({ originalPost }) => {
   );
 };
 
-export default UpdatePost;
+export default UpdatePosts;
