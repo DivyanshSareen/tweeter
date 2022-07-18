@@ -12,10 +12,8 @@ const Recommendations = () => {
     if (auth.status === "fulfilled") {
       axios.get("/api/users").then((res) => setUsers(res.data.users));
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.status]);
-
   return (
     <section className='recommend'>
       <h4 className='h6'>Who to Follow?</h4>
