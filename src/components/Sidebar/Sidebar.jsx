@@ -5,7 +5,6 @@ import {
   faCrow,
   faRocket,
   faBookmark,
-  faBell,
   faUser,
   faHome,
 } from "@fortawesome/free-solid-svg-icons";
