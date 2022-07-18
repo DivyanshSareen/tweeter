@@ -1,5 +1,4 @@
 const Comment = ({ comment }) => {
-  console.log(comment);
   return (
     <div className='comment'>
       <div className='avatar'>

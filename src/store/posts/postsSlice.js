@@ -9,6 +9,7 @@ const initialState = {
   specificPost: {},
   specificPostStatus: "idle",
   userPostsList: [],
+  commentPostStatus: "idle",
 };
 
 export const getListOfPosts = createAsyncThunk(
@@ -133,11 +134,21 @@ export const postComment = createAsyncThunk(
   "/posts/postComment",
   async (args, { dispatch, getState }) => {
     const state = getState();
-    return axios.post(
-      `/api/comments/add/${args.postId}`,
-      { commentData: { args: "fsdf" } },
-      { headers: { authorization: state.userInfo.authToken } }
-    );
+    return axios
+      .post(
+        `/api/comments/add/${args.postId}`,
+        {
+          commentData: {
+            username: state.userInfo.userDetails.username,
+            text: args.comment,
+            firstName: state.userInfo.userDetails.firstName,
+            lastName: state.userInfo.userDetails.lastName,
+            profilePicture: state.userInfo.userDetails.profilePicture,
+          },
+        },
+        { headers: { authorization: state.userInfo.authToken } }
+      )
+      .catch((e) => console.log(e));
   }
 );
 
@@ -180,9 +191,15 @@ export const postsSlice = createSlice({
     [updatePost.fulfilled]: (state, action) => {
       state.postsList = action.payload;
     },
+    [postComment.pending]: (state) => {
+      state.commentPostStatus = "pending";
+    },
+    [postComment.fulfilled]: (state, action) => {
+      state.commentPostStatus = "fulfilled";
+    },
   },
 });
 
-export const { updatePostsList } = postsSlice.actions;
+export const { updatePostsList, updatePostComments } = postsSlice.actions;
 
 export default postsSlice.reducer;

@@ -4,7 +4,7 @@ import {
   faBookmark,
   faComment,
 } from "@fortawesome/free-solid-svg-icons";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
@@ -14,20 +14,31 @@ import {
 } from "../store/posts/postsSlice";
 import Loading from "../components/Loading/Loading";
 import Comment from "../components/Posts/Comment";
+import Modal from "../components/Modal/Modal";
+import AddComment from "../components/Posts/AddComment";
 import "../styles/post-page.css";
 
 const PostPage = () => {
   const params = useParams();
   const posts = useSelector((store) => store.posts);
   const dispatch = useDispatch();
+  const [isHidden, setIsHidden] = useState(true);
+
   useEffect(() => {
     dispatch(getSpecificPost({ postId: params.postId, path: "/api/posts/" }));
-    console.log(posts.specificPost.comments);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.postId]);
+  useEffect(() => {
+    console.log("run");
+    dispatch(getSpecificPost({ postId: params.postId, path: "/api/posts/" }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [posts.commentPostStatus]);
   return posts.specificPostStatus === "fulfilled" ? (
     <div className='post-page'>
       <section className='post'>
+        <Modal isHidden={isHidden} setIsHidden={setIsHidden}>
+          <AddComment postId={posts?.specificPost?._id} />
+        </Modal>
         <div className='avatar'>
           <img
             src={require("../assets/" + posts?.specificPost?.userImage)}
@@ -67,7 +78,11 @@ const PostPage = () => {
             }}>
             <FontAwesomeIcon className='sidebar-logo--icon' icon={faBookmark} />
           </button>
-          <button className='btn btn-ghost' onClick={() => {}}>
+          <button
+            className='btn btn-ghost'
+            onClick={() => {
+              setIsHidden(false);
+            }}>
             <FontAwesomeIcon className='sidebar-logo--icon' icon={faComment} />
           </button>
         </div>
