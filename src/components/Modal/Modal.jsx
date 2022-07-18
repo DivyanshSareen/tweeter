@@ -1,5 +1,4 @@
 const Modal = ({ isHidden, setIsHidden, children }) => {
-  console.log(children);
   return (
     <div
       className='modal'

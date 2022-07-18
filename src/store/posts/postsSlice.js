@@ -8,6 +8,7 @@ const initialState = {
   createPostStatus: "idle",
   specificPost: {},
   specificPostStatus: "idle",
+  userPostsList: [],
 };
 
 export const getListOfPosts = createAsyncThunk(
@@ -84,6 +85,28 @@ export const createPost = createAsyncThunk(
   }
 );
 
+export const deletePost = createAsyncThunk(
+  "posts/deletePost",
+  async (args, { dispatch, getState }) => {
+    const state = getState();
+    await axios
+      .delete("/api/posts/" + args.postId, {
+        headers: { authorization: state.userInfo.authToken },
+      })
+      .catch((e) => console.log(e))
+      .then((res) => console.log(res.data));
+  }
+);
+
+export const getPostsByUser = createAsyncThunk(
+  "/posts/getPostsByUser",
+  async (username, { dispatch, getState }) => {
+    return await axios
+      .get("/api/posts/user/" + username)
+      .then((res) => res.data.posts);
+  }
+);
+
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -109,6 +132,16 @@ export const postsSlice = createSlice({
     },
     [createPost.fulfilled]: (state, action) => {
       state.createPostStatus = "fulfilled";
+    },
+    [deletePost.pending]: (state, action) => {
+      state.status = "pending";
+    },
+    [deletePost.fulfilled]: (state, action) => {
+      state.postsList = action.payload;
+      state.status = "fulfilled";
+    },
+    [getPostsByUser.fulfilled]: (state, action) => {
+      state.userPostsList = action.payload;
     },
   },
 });
