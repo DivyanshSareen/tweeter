@@ -92,7 +92,7 @@ export const deletePost = createAsyncThunk(
       .delete("/api/posts/" + args.postId, {
         headers: { authorization: state.userInfo.authToken },
       })
-      .then((res) => console.log(res.data));
+      .then((res) => res.data);
   }
 );
 

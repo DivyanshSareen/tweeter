@@ -17,7 +17,6 @@ const HomePage = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.status]);
-  console.log(posts.postsList);
   return (
     <>
       <div className='homepage'>
