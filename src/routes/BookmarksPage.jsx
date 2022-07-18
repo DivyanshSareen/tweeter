@@ -3,9 +3,9 @@ import BookmarkPost from "../components/Bookmarks/BookmarkPost";
 
 const BookmarksPage = () => {
   const userInfo = useSelector((store) => store.userInfo);
-  console.log(userInfo.userDetails.bookmarks);
   return (
-    <div>
+    <div className='explore'>
+      <h5 className='h5'>Explore</h5>
       {userInfo.userDetails.bookmarks.map((post) => (
         <BookmarkPost post={post} />
       ))}

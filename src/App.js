@@ -8,6 +8,7 @@ import ProfilePage from "./routes/ProfilePage";
 import UserPage from "./routes/UserPage";
 import PostPage from "./routes/PostPage";
 import BookmarksPage from "./routes/BookmarksPage";
+import ExplorePage from "./routes/ExplorePage";
 import RequiresAuth from "./components/RequiresAuth/RequiresAuth";
 import ErrorPage from "./routes/ErrorPage";
 import Mockman from "mockman-js";
@@ -71,6 +72,14 @@ function App() {
           element={
             <RequiresAuth>
               <BookmarksPage />
+            </RequiresAuth>
+          }
+        />
+        <Route
+          path='explore'
+          element={
+            <RequiresAuth>
+              <ExplorePage />
             </RequiresAuth>
           }
         />

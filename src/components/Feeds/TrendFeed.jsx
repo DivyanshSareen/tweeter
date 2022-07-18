@@ -1,6 +1,5 @@
 import Post from "../Posts/Post";
 const TrendFeed = ({ posts }) => {
-  console.log(posts.postsList[2].likes.likeCount);
   return (
     <>
       {posts?.postsList

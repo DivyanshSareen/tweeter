@@ -26,20 +26,18 @@ const Sidebar = () => {
         <FontAwesomeIcon className='sidebar-logo--icon' icon={faHome} />
         Home
       </Link>
-      <div className='sidebar-option'>
-        <FontAwesomeIcon className='sidebar-logo--icon' icon={faRocket} />
-        Explore
-      </div>
+      <Link to='explore'>
+        <div className='sidebar-option'>
+          <FontAwesomeIcon className='sidebar-logo--icon' icon={faRocket} />
+          Explore
+        </div>
+      </Link>
       <Link to='bookmarks'>
         <div className='sidebar-option'>
           <FontAwesomeIcon className='sidebar-logo--icon' icon={faBookmark} />
           Bookmarks
         </div>
       </Link>
-      <div className='sidebar-option'>
-        <FontAwesomeIcon className='sidebar-logo--icon' icon={faBell} />
-        Notifications
-      </div>
       <Link to='profile'>
         <div className='sidebar-option'>
           <FontAwesomeIcon className='sidebar-logo--icon' icon={faUser} />

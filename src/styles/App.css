@@ -4,6 +4,13 @@
     grid-template-columns: 2fr 3fr 2fr;
 }
 
+.explore{
+    display: flex;
+    flex-direction: column;
+    padding-top: 1em;
+    gap: 2em;
+}
+
 .modal{
     display: flex;
     width: 100%;
