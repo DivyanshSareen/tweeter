@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 const initialState = {
   userDetails: {
     _id: "",
@@ -17,6 +18,26 @@ const initialState = {
   userIsUpdated: false,
 };
 
+export const updateUserProfile = createAsyncThunk(
+  "/userInfo/updateUserProfile",
+  async (args, { dispatch, getState }) => {
+    const state = getState();
+    console.log(args);
+    axios
+      .post(
+        "/api/users/edit",
+        {
+          userData: {
+            description: args.description,
+            portfolioURL: args.portfolioURL,
+          },
+        },
+        { headers: { authorization: state.userInfo.authToken } }
+      )
+      .then((res) => dispatch(updateUserFollowingInfo(res.data.user)));
+  }
+);
+
 export const userInfoSlice = createSlice({
   name: "userInfo",
   initialState,
@@ -28,10 +49,16 @@ export const userInfoSlice = createSlice({
     updateUserFollowingInfo: (state, action) => {
       state.userDetails = action.payload;
     },
+    updateUserBookmarksInfo: (state, action) => {
+      state.userDetails.bookmarks = action.payload;
+    },
   },
 });
 
-export const { updateUserInfo, updateUserFollowingInfo } =
-  userInfoSlice.actions;
+export const {
+  updateUserInfo,
+  updateUserFollowingInfo,
+  updateUserBookmarksInfo,
+} = userInfoSlice.actions;
 
 export default userInfoSlice.reducer;

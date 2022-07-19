@@ -1,12 +1,11 @@
+import { postComment } from "../../store/posts/postsSlice";
+import { useSelector, useDispatch } from "react-redux/es/exports";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { createPost } from "../../store/posts/postsSlice";
 
-const CreatePost = () => {
-  const [post, setPost] = useState("");
+const AddComment = ({ postId }) => {
   const dispatch = useDispatch();
+  const [comment, setComment] = useState("");
   const userInfo = useSelector((store) => store.userInfo);
-
   return (
     <section className='create-post'>
       <div className='avatar'>
@@ -17,15 +16,7 @@ const CreatePost = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          dispatch(
-            createPost({
-              content: post,
-              firstName: userInfo.userDetails.firstName,
-              lastName: userInfo.userDetails.lastName,
-              profilePicture: userInfo.userDetails.profilePicture,
-            })
-          );
-          setPost("");
+          dispatch(postComment({ comment: comment, postId: postId }));
         }}>
         <div className='text-area'>
           <label className='textarea-label' htmlFor='desc'>
@@ -36,16 +27,16 @@ const CreatePost = () => {
             cols='40'
             rows='8'
             id='desc'
-            value={post}
+            value={comment}
             onChange={(e) => {
-              setPost(e.target.value);
+              setComment(e.target.value);
             }}
             placeholder='Start typing!'></textarea>
-          <input type='submit' className='btn btn-ghost' value='post'></input>
+          <input type='submit' className='btn btn-ghost' value='save'></input>
         </div>
       </form>
     </section>
   );
 };
 
-export default CreatePost;
+export default AddComment;

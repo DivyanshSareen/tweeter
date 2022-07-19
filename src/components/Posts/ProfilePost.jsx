@@ -1,18 +1,24 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { bookmarkPost } from "../../store/posts/postsSlice";
+import { deletePost } from "../../store/posts/postsSlice";
 import {
   faHeart,
-  faBookmark,
-  faEye,
+  faTrash,
+  faPencil,
   faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import Modal from "../Modal/Modal";
+import UpdatePosts from "./UpdatePosts";
+import { useState } from "react";
 
-const Post = ({ post }) => {
+const ProfilePost = ({ post }) => {
   const dispatch = useDispatch();
+  const [isHidden, setIsHidden] = useState(true);
   return (
     <div className='post'>
+      <Modal isHidden={isHidden} setIsHidden={setIsHidden}>
+        <UpdatePosts originalPost={post} />
+      </Modal>
       <div className='avatar'>
         <img
           src={require("../../assets/" + post?.userImage)}
@@ -27,11 +33,13 @@ const Post = ({ post }) => {
         </p>
         <p className='post-text'>{post?.content}</p>
         <div className='post-options'>
-          <Link to={"../posts/" + post?._id}>
-            <button className='btn btn-ghost'>
-              <FontAwesomeIcon className='sidebar-logo--icon' icon={faEye} />
-            </button>
-          </Link>
+          <button
+            className='btn btn-ghost'
+            onClick={() => {
+              setIsHidden(false);
+            }}>
+            <FontAwesomeIcon className='sidebar-logo--icon' icon={faPencil} />
+          </button>
           <div>
             {post?.likes?.likeCount}
             <FontAwesomeIcon className='post-logo--icon' icon={faHeart} />
@@ -44,13 +52,13 @@ const Post = ({ post }) => {
             className='btn btn-ghost'
             onClick={() => {
               dispatch(
-                bookmarkPost({
-                  path: "../api/users/bookmark/",
+                deletePost({
+                  path: "../api/posts/",
                   postId: post?._id,
                 })
               );
             }}>
-            <FontAwesomeIcon className='sidebar-logo--icon' icon={faBookmark} />
+            <FontAwesomeIcon className='sidebar-logo--icon' icon={faTrash} />
           </button>
         </div>
       </div>
@@ -58,4 +66,4 @@ const Post = ({ post }) => {
   );
 };
 
-export default Post;
+export default ProfilePost;

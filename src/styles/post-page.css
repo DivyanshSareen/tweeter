@@ -1,0 +1,23 @@
+.post-page{
+    margin-top: 4em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.post-page .post {
+    display: grid;
+    grid-template: "1fr 5fr" "1fr";
+}
+
+.comments{
+    padding-top: 1em
+}
+
+.comment > .avatar{
+    width: 4em;
+}
+
+.comment{
+    padding: 0.5em 0 0.5em 2em;
+}

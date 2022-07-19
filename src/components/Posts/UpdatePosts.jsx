@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createPost } from "../../store/posts/postsSlice";
+import { updatePost } from "../../store/posts/postsSlice";
 
-const CreatePost = () => {
-  const [post, setPost] = useState("");
+const UpdatePosts = ({ originalPost }) => {
+  const [postContent, setPostContent] = useState(originalPost.content);
   const dispatch = useDispatch();
   const userInfo = useSelector((store) => store.userInfo);
 
@@ -17,15 +17,7 @@ const CreatePost = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          dispatch(
-            createPost({
-              content: post,
-              firstName: userInfo.userDetails.firstName,
-              lastName: userInfo.userDetails.lastName,
-              profilePicture: userInfo.userDetails.profilePicture,
-            })
-          );
-          setPost("");
+          dispatch(updatePost({ ...originalPost, content: postContent }));
         }}>
         <div className='text-area'>
           <label className='textarea-label' htmlFor='desc'>
@@ -36,16 +28,16 @@ const CreatePost = () => {
             cols='40'
             rows='8'
             id='desc'
-            value={post}
+            value={postContent}
             onChange={(e) => {
-              setPost(e.target.value);
+              setPostContent(e.target.value);
             }}
             placeholder='Start typing!'></textarea>
-          <input type='submit' className='btn btn-ghost' value='post'></input>
+          <input type='submit' className='btn btn-ghost' value='save'></input>
         </div>
       </form>
     </section>
   );
 };
 
-export default CreatePost;
+export default UpdatePosts;

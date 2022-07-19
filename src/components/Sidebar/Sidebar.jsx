@@ -5,13 +5,16 @@ import {
   faCrow,
   faRocket,
   faBookmark,
-  faBell,
   faUser,
   faHome,
 } from "@fortawesome/free-solid-svg-icons";
+import Modal from "../Modal/Modal";
+import CreatePost from "../Posts/CreatePost";
+import { useState } from "react";
 
 const Sidebar = () => {
   const userInfo = useSelector((store) => store.userInfo);
+  const [isHidden, setIsHidden] = useState(true);
   return (
     <div className='sidebar-menu'>
       <div className='sidebar-logo'>
@@ -22,24 +25,30 @@ const Sidebar = () => {
         <FontAwesomeIcon className='sidebar-logo--icon' icon={faHome} />
         Home
       </Link>
-      <div className='sidebar-option'>
-        <FontAwesomeIcon className='sidebar-logo--icon' icon={faRocket} />
-        Explore
-      </div>
-      <div className='sidebar-option'>
-        <FontAwesomeIcon className='sidebar-logo--icon' icon={faBookmark} />
-        Bookmarks
-      </div>
-      <div className='sidebar-option'>
-        <FontAwesomeIcon className='sidebar-logo--icon' icon={faBell} />
-        Notifications
-      </div>
+      <Link to='explore'>
+        <div className='sidebar-option'>
+          <FontAwesomeIcon className='sidebar-logo--icon' icon={faRocket} />
+          Explore
+        </div>
+      </Link>
+      <Link to='bookmarks'>
+        <div className='sidebar-option'>
+          <FontAwesomeIcon className='sidebar-logo--icon' icon={faBookmark} />
+          Bookmarks
+        </div>
+      </Link>
       <Link to='profile'>
         <div className='sidebar-option'>
           <FontAwesomeIcon className='sidebar-logo--icon' icon={faUser} />
           Profile
         </div>
       </Link>
+      <button className='btn btn-ghost' onClick={() => setIsHidden(false)}>
+        +Create Post
+      </button>
+      <Modal isHidden={isHidden} setIsHidden={setIsHidden}>
+        <CreatePost />
+      </Modal>
       <div className='sidebar-profile'>
         <div className='avatar'>
           <img
