@@ -14,6 +14,9 @@ const UserPage = () => {
     dispatch(getSpecificUser(params.userId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.userId]);
+  useEffect(() => {
+    getSpecificUser(params.userId);
+  }, [users.followStatus]);
 
   return (
     <div className='profile'>

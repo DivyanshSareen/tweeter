@@ -33,6 +33,7 @@ export const followUser = createAsyncThunk(
       .then((res) => {
         dispatch(updateUserFollowingInfo(res.data.user));
         updateListOfUsers(res.data.followUser);
+        return res.data.followUser;
       });
   }
 );
@@ -52,6 +53,7 @@ export const unfollowUser = createAsyncThunk(
       .then((res) => {
         dispatch(updateUserFollowingInfo(res.data.user));
         updateListOfUsers(res.data.followUser);
+        return res.data.followUser;
       });
   }
 );
@@ -86,6 +88,12 @@ const usersSlice = createSlice({
     [getSpecificUser.fulfilled]: (state, action) => {
       state.specificUser = action.payload;
       state.specificUserStatus = "fulfilled";
+    },
+    [followUser.fulfilled]: (state, action) => {
+      state.specificUser = action.payload;
+    },
+    [unfollowUser.fulfilled]: (state, action) => {
+      state.specificUser = action.payload;
     },
   },
 });
