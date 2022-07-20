@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+##  <img width="40px" src="https://user-images.githubusercontent.com/59335572/179969157-cd25cd90-f60b-42e8-9be0-f3160b8330e7.svg" /> Tweeter 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Tweeter is a twitter clone app. Share your thoughts to the world without getting cancelled!
+| Feature         | Description                                                                      |
+| --------------- | -------------------------------------------------------------------------------- |
+| Landing Page    | Landing page with login and signup options                                       |
+| Homepage        | Allows user to create post and filter timeline by time and trending              | 
+| Post Page       | Displays a selected post along with comments                                     |
+| User Profile    | Displays user details along with logout and edit user options                    |
+| Explore         | Has posts from all the users on the app                                          |
+| Bookmarks       | Has all the posts bookmarked by the user                                         |
+| Post Page       | Displays a selected post along with comments                                     |
+| Recommendation  | Displays profiles of other users                                                 |
+| Login           | Login functionality with remember me option                                      |
+| Signup          | Allows user to create a new user                                                 |
 
-## Available Scripts
+## Live Demo 
 
-In the project directory, you can run:
+Here is a netlify link for live demo🪄: [![Netlify Status](https://api.netlify.com/api/v1/badges/810b0aec-ee6e-4c4c-acbc-6370bdab179e/deploy-status)](https://tweeterweb.netlify.app/)
 
-### `yarn start`
+## Techstack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Frontend
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- ReactJS: Decarative JavaScript library for frontend development
+- Redux Toolkit: Toolkit that provides abstraction over Redux state management
+- PeaceUI: A CSS component framework made by yours truly. [link](https://peaceui.netlify.app/)
 
-### `yarn test`
+### Backend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- MockBee: An epic tool for creating mock backends by neogcamp. [link](https://mockbee.netlify.app/)
 
-### `yarn build`
+## Run Locally
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Follow these steps to setup this web app on your local server:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone this Repository or download the code from this repo to your local machine.
+2. Navigte to the root directory of the project.
+3. Create a `.env` file with all the variables in example.env(use random value for secrete keys)
+4. Install npm packages if not done already using `npm install`
+5. Now staying in the root directory run the command: `npm start`
+6. You will find the web app running on your local server.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Future Goals
 
-### `yarn eject`
+* Add dark mode
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Devloped by
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* Divyansh Sareen  (•◡•) /
