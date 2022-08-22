@@ -31,62 +31,63 @@ function App() {
   return (
     <div className={auth.isLoggedIn ? "App" : ""}>
       {auth.isLoggedIn && <Sidebar />}
-      <Routes>
-        <Route path='/' element={<LandingPage />} />
-        <Route path='login' element={<LoginPage />} />
-        <Route path='signup' element={<SignupPage />} />
-        <Route
-          path='home'
-          element={
-            <RequiresAuth>
-              <HomePage />
-            </RequiresAuth>
-          }
-        />
-        <Route
-          path='profile'
-          element={
-            <RequiresAuth>
-              <ProfilePage />
-            </RequiresAuth>
-          }
-        />
-        <Route
-          path='/:userId'
-          element={
-            <RequiresAuth>
-              <UserPage />
-            </RequiresAuth>
-          }
-        />
-        <Route
-          path='posts/:postId'
-          element={
-            <RequiresAuth>
-              <PostPage />
-            </RequiresAuth>
-          }
-        />
-        <Route
-          path='bookmarks'
-          element={
-            <RequiresAuth>
-              <BookmarksPage />
-            </RequiresAuth>
-          }
-        />
-        <Route
-          path='explore'
-          element={
-            <RequiresAuth>
-              <ExplorePage />
-            </RequiresAuth>
-          }
-        />
-        <Route path='error' element={<ErrorPage />} />
-        <Route path='mock' element={<Mockman />} />
-      </Routes>
-
+      <main>
+        <Routes>
+          <Route path='/' element={<LandingPage />} />
+          <Route path='login' element={<LoginPage />} />
+          <Route path='signup' element={<SignupPage />} />
+          <Route
+            path='home'
+            element={
+              <RequiresAuth>
+                <HomePage />
+              </RequiresAuth>
+            }
+          />
+          <Route
+            path='profile'
+            element={
+              <RequiresAuth>
+                <ProfilePage />
+              </RequiresAuth>
+            }
+          />
+          <Route
+            path='/:userId'
+            element={
+              <RequiresAuth>
+                <UserPage />
+              </RequiresAuth>
+            }
+          />
+          <Route
+            path='posts/:postId'
+            element={
+              <RequiresAuth>
+                <PostPage />
+              </RequiresAuth>
+            }
+          />
+          <Route
+            path='bookmarks'
+            element={
+              <RequiresAuth>
+                <BookmarksPage />
+              </RequiresAuth>
+            }
+          />
+          <Route
+            path='explore'
+            element={
+              <RequiresAuth>
+                <ExplorePage />
+              </RequiresAuth>
+            }
+          />
+          <Route path='error' element={<ErrorPage />} />
+          <Route path='mock' element={<Mockman />} />
+        </Routes>
+      </main>
       {auth.isLoggedIn && (
         <div className='users'>
           <Recommendations />

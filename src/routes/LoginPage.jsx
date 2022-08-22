@@ -31,52 +31,50 @@ const LoginPage = () => {
   };
 
   return (
-    <>
-      <form onSubmit={onSubmitHandler}>
-        <h5 className='h4 center-text login-head'>
-          <FontAwesomeIcon icon={faCrow} />{" "}
-          {auth.status === "rejected" ? "Try Again" : "Sign In"}
-        </h5>
-        <div className='input'>
-          <label htmlFor='userName' className='input-label'>
-            User Name
-          </label>
-          <input
-            name='userName'
-            type='text'
-            className='input-data'
-            value={auth.userName}
-            onChange={onChangeHandler}
-            required></input>
-        </div>
-        <div className='input'>
-          <label htmlFor='password' className='input-label'>
-            Password
-          </label>
-          <input
-            name='password'
-            type='password'
-            id='password'
-            className='input-data'
-            value={auth.password}
-            onChange={onChangeHandler}
-            required></input>
-        </div>
-        {auth.status === "pending" ? (
-          <Loading />
-        ) : (
-          <input
-            type='submit'
-            className='btn btn-ghost btn-login center-text'></input>
-        )}
+    <form onSubmit={onSubmitHandler}>
+      <h5 className='h4 center-text login-head'>
+        <FontAwesomeIcon icon={faCrow} />{" "}
+        {auth.status === "rejected" ? "Try Again" : "Sign In"}
+      </h5>
+      <div className='input'>
+        <label htmlFor='userName' className='input-label'>
+          User Name
+        </label>
+        <input
+          name='userName'
+          type='text'
+          className='input-data'
+          value={auth.userName}
+          onChange={onChangeHandler}
+          required></input>
+      </div>
+      <div className='input'>
+        <label htmlFor='password' className='input-label'>
+          Password
+        </label>
+        <input
+          name='password'
+          type='password'
+          id='password'
+          className='input-data'
+          value={auth.password}
+          onChange={onChangeHandler}
+          required></input>
+      </div>
+      {auth.status === "pending" ? (
+        <Loading />
+      ) : (
+        <input
+          type='submit'
+          className='btn btn-ghost btn-login center-text'></input>
+      )}
 
-        <Link to='/signup'>
-          <div className='signup paragraph1 center-text'>
-            Create New Account <i className='fa-solid fa-chevron-right'></i>
-          </div>
-        </Link>
-      </form>
-    </>
+      <Link to='/signup'>
+        <div className='signup paragraph1 center-text'>
+          Create New Account <i className='fa-solid fa-chevron-right'></i>
+        </div>
+      </Link>
+    </form>
   );
 };
 

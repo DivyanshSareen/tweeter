@@ -1,17 +1,17 @@
 :root{
-    --primary-lighter: #E3FDFD;
-    --primary-light: #CBF1F5;
-    --primary: #A6E3E9;
-    --primary-dark: #71C9CE;
-    --primary-darker: #4da1a6;
-    --primary-even-darker: #2b585b;
+    --primary-lighter: #BBE1FA;
+    --primary-light: #3282B8;
+    --primary: #0F4C75;
+    --primary-dark: #0a3959;
+    --primary-darker: #08283d;
+    --primary-even-darker: #1B262C;
     --black: #000;
     --white: #fff;
 }
 
     body{
-    background: white;
-    color: var(--primary-darker);
+    background: var(--primary-even-darker);
+    color: var(--primary-lighter);
 }
 
 a {

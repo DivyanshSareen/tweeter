@@ -14,21 +14,21 @@
 }
 
 .landing-highlight {
-    color: var(--primary-darker);
+    color: var(--primary-light);
     font-weight: var(--bold);
 }
 
 .landing-content--icon {
     font-size: xx-large;
-    color: var(--black);
+    color: var(--white);
 }
 
 .landing-title {
-    color: var(--primary-dark);
+    color: var(--primary-light);
 }
 
 .landing-subtitle{
-    color: var(--primary-dark);
+    color: var(--primary);
 }
 
 .btn-ghost {
@@ -43,4 +43,8 @@
 .btn-ghost:hover{
     color: var(--white);
     background-color: var(--primary-dark);
+}
+
+main{
+    border: none;
 }

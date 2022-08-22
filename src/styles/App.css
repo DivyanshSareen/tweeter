@@ -1,7 +1,18 @@
 @import "./reset.css";
 .App {
     display: grid;
-    grid-template-columns: 2fr 3fr 2fr;
+    grid-template-columns: 2fr 4fr 2fr;
+}
+
+main{
+    border-left: 1px solid var(--primary-lighter);
+    border-right: 1px solid var(--primary-lighter) ;
+    padding: 1rem;
+}
+
+textarea {
+    background-color: var(--primary-lighter);
+    opacity: 70%;
 }
 
 .explore{
@@ -22,7 +33,7 @@
 }
 
 .modal-form{
-    background-color: var(--primary-lighter);
+    background-color: var(--primary-dark);
     border-radius: var(--radius-m);
     padding: 1em;
 }
@@ -95,4 +106,12 @@
 
 .rec-user > .avatar {
     width: 2.7em;
+}
+
+.avatar > img {
+    border: 2px solid var(--primary-light);
+}
+
+.avatar-l>img {
+    border: 4px solid var(--primary-light);
 }
