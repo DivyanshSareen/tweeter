@@ -5,7 +5,7 @@ const BookmarksPage = () => {
   const userInfo = useSelector((store) => store.userInfo);
   return (
     <div className='explore'>
-      <h5 className='h5'>Explore</h5>
+      <h5 className='h5'>Bookmarks</h5>
       {userInfo.userDetails.bookmarks.map((post) => (
         <BookmarkPost post={post} />
       ))}

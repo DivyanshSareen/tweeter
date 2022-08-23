@@ -1,7 +1,7 @@
 .create-post {
     display: grid;
     grid-template-columns: 1fr 5fr;
-    border-bottom: 1px solid var(--primary-darker);
+    border-bottom: 1px solid var(--primary-lighter);
 }
 
 .create-post>.avatar {

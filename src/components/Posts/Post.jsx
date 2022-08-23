@@ -3,7 +3,6 @@ import { bookmarkPost } from "../../store/posts/postsSlice";
 import {
   faHeart,
   faBookmark,
-  faEye,
   faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
@@ -19,19 +18,16 @@ const Post = ({ post }) => {
           alt='avatar-img'></img>
       </div>
       <div className='post-content'>
-        <p className='post-author'>
-          <b>
-            {post?.firstName} {post?.lastName}
-          </b>
-          @{post?.username}
-        </p>
-        <p className='post-text'>{post?.content}</p>
+        <Link to={"../posts/" + post?._id}>
+          <p className='post-author'>
+            <b>
+              {post?.firstName} {post?.lastName}
+            </b>
+            @{post?.username}
+          </p>
+          <p className='post-text'>{post?.content}</p>
+        </Link>
         <div className='post-options'>
-          <Link to={"../posts/" + post?._id}>
-            <button className='btn btn-ghost'>
-              <FontAwesomeIcon className='sidebar-logo--icon' icon={faEye} />
-            </button>
-          </Link>
           <div>
             {post?.likes?.likeCount}
             <FontAwesomeIcon className='post-logo--icon' icon={faHeart} />
